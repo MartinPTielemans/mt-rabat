@@ -1,11 +1,7 @@
 [install]
-# Use exact versions by default
+peer = true
 exact = true
+optional = false
 
-[test]
-# Configure test options
-coverage = true
-
-[install.cache]
-# Configure the cache directory
-dir = ".bun" 
+[dev]
+port = 3000 
