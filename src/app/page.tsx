@@ -24,9 +24,9 @@ export default function Home() {
               Rabatbiler sikrer vejenes holdbarhed
             </h1>
             <p className="text-xl text-white/90 mb-8">
-              Marcel Tielemans' rabatbiler vedligeholder rabatterne og sikrer,
-              at afvandingen fra vejen kan løbe væk, så vandet ikke bliver
-              liggende på vejen. Alt sker i én arbejdsgang.
+              Marcel Tielemans&apos; rabatbiler vedligeholder rabatterne og
+              sikrer, at afvandingen fra vejen kan løbe væk, så vandet ikke
+              bliver liggende på vejen. Alt sker i én arbejdsgang.
             </p>
             <div className="flex gap-4">
               <Button
