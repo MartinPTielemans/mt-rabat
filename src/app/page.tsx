@@ -24,9 +24,9 @@ export default function Home() {
               Rabatbiler sikrer vejenes holdbarhed
             </h1>
             <p className="text-xl text-white/90 mb-8">
-              Arkils rabatbiler vedligeholder rabatterne og sikrer, at
-              afvandingen fra vejen kan løbe væk, så vandet ikke bliver liggende
-              på vejen. Alt sker i én arbejdsgang.
+              Marcel Tielemans' rabatbiler vedligeholder rabatterne og sikrer,
+              at afvandingen fra vejen kan løbe væk, så vandet ikke bliver
+              liggende på vejen. Alt sker i én arbejdsgang.
             </p>
             <div className="flex gap-4">
               <Button
@@ -35,7 +35,8 @@ export default function Home() {
                 className="bg-blue-600 hover:bg-blue-700"
               >
                 <Link href="/kontakt">
-                  Kontakt os <ArrowRight className="ml-2 h-4 w-4" />
+                  Kontakt Marcel Tielemans{" "}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button
@@ -181,7 +182,7 @@ export default function Home() {
           </p>
           <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
             <Link href="/kontakt">
-              Kontakt Arkil <ArrowRight className="ml-2 h-4 w-4" />
+              Kontakt Marcel Tielemans <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -194,8 +195,9 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Om os</h3>
               <p className="text-gray-400">
-                Arkil er en professionel leverandør af infrastrukturløsninger
-                med fokus på bæredygtighed og høj kvalitet.
+                Marcel Tielemans er en professionel leverandør af
+                infrastrukturløsninger med fokus på bæredygtighed og høj
+                kvalitet.
               </p>
             </div>
             <div>
@@ -211,7 +213,7 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>Telefon: +45 73 22 50 50</li>
-                <li>Email: arkil@arkil.dk</li>
+                <li>Email: info@marcel-tielemans.dk</li>
                 <li>Adresse: Søndergård Alle 4, 6500 Vojens</li>
               </ul>
             </div>
@@ -226,7 +228,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; Arkil {new Date().getFullYear()}</p>
+            <p>&copy; Marcel Tielemans {new Date().getFullYear()}</p>
           </div>
         </div>
       </footer>

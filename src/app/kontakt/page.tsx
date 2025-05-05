@@ -17,7 +17,7 @@ export default function ContactPage() {
           </Link>
         </Button>
 
-        <h1 className="text-4xl font-bold mb-8">Kontakt Arkil</h1>
+        <h1 className="text-4xl font-bold mb-8">Kontakt Marcel Tielemans</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
@@ -91,7 +91,7 @@ export default function ContactPage() {
                   <Mail className="h-5 w-5 text-blue-600 mt-0.5 mr-3" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-gray-600">arkil@arkil.dk</p>
+                    <p className="text-gray-600">info@marcel-tielemans.dk</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -134,8 +134,9 @@ export default function ContactPage() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Om os</h3>
               <p className="text-gray-400">
-                Arkil er en professionel leverandør af infrastrukturløsninger
-                med fokus på bæredygtighed og høj kvalitet.
+                Marcel Tielemans er en professionel leverandør af
+                infrastrukturløsninger med fokus på bæredygtighed og høj
+                kvalitet.
               </p>
             </div>
             <div>
@@ -151,7 +152,7 @@ export default function ContactPage() {
               <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>Telefon: +45 73 22 50 50</li>
-                <li>Email: arkil@arkil.dk</li>
+                <li>Email: info@marcel-tielemans.dk</li>
                 <li>Adresse: Søndergård Alle 4, 6500 Vojens</li>
               </ul>
             </div>
@@ -166,7 +167,7 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; Arkil {new Date().getFullYear()}</p>
+            <p>&copy; Marcel Tielemans {new Date().getFullYear()}</p>
           </div>
         </div>
       </footer>
