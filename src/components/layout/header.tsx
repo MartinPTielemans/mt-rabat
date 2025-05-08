@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { Logo } from "@/components/ui/logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { usePrefetchGalleryImages } from "@/hooks/useGalleryImages";
 import { useQueryClient } from "@tanstack/react-query";
@@ -24,6 +24,28 @@ export function Header() {
   const { prefetchImages } = usePrefetchGalleryImages();
   const queryClient = useQueryClient();
 
+  // Always prefetch gallery images when the header mounts and whenever the pathname changes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      prefetchGalleryImages();
+    }, 500); // Slight delay to ensure other critical resources load first
+
+    return () => clearTimeout(timer);
+  }, [pathname]); // Re-run when pathname changes
+
+  const prefetchGalleryImages = () => {
+    // Use TanStack Query's built-in prefetching with stale time of 0 to force fetch
+    queryClient.prefetchQuery({
+      queryKey: ["galleryImages"],
+      queryFn: async () => {
+        // This also triggers our manual image prefetching
+        await prefetchImages();
+        return null;
+      },
+      staleTime: 0, // Always consider data stale
+    });
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -31,15 +53,15 @@ export function Header() {
   // Function to handle link hover based on link href
   const handleLinkHover = (href: string) => {
     if (href === "/galleri") {
-      // Use TanStack Query's built-in prefetching
-      queryClient.prefetchQuery({
-        queryKey: ["galleryImages"],
-        queryFn: async () => {
-          // This also triggers our manual image prefetching
-          await prefetchImages();
-          return null;
-        },
-      });
+      prefetchGalleryImages();
+    }
+  };
+
+  // Function to handle link click for prefetching
+  const handleLinkClick = (href: string) => {
+    if (href === "/galleri") {
+      // Force a refresh of gallery data on click
+      prefetchGalleryImages();
     }
   };
 
@@ -69,6 +91,7 @@ export function Header() {
                 className={`relative text-gray-600 hover:text-blue-600 transition-colors ${
                   pathname === link.href ? "text-blue-600 font-medium" : ""
                 }`}
+                onClick={() => handleLinkClick(link.href)}
               >
                 {link.label}
                 {pathname === link.href && (
@@ -116,7 +139,10 @@ export function Header() {
                     ? "text-blue-600 font-medium bg-blue-50"
                     : "hover:bg-gray-50"
                 }`}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleLinkClick(link.href);
+                }}
                 onMouseEnter={() => handleLinkHover(link.href)}
               >
                 {link.label}

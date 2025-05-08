@@ -12,7 +12,10 @@ type ImageFile = {
 // Function to fetch gallery images
 async function fetchGalleryImages() {
   try {
-    const response = await fetch('/api/galleri');
+    const response = await fetch('/api/galleri', {
+      cache: 'no-store', // Don't cache the request at the fetch level
+      next: { revalidate: 0 } // For Next.js - don't cache at the route level
+    });
     
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
@@ -43,8 +46,11 @@ export function useGalleryImages() {
   return useQuery({
     queryKey: ['galleryImages'],
     queryFn: fetchGalleryImages,
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 0, // Always consider data stale to encourage refetching
     gcTime: 1000 * 60 * 60, // 1 hour
+    refetchOnMount: 'always', // Always refetch when component mounts
+    refetchOnWindowFocus: true, // Refetch when window regains focus
+    retry: 3, // Retry failed requests 3 times
   });
 }
 
@@ -76,4 +82,4 @@ export function usePrefetchGalleryImages() {
   };
 
   return { prefetchImages };
-} 
+}

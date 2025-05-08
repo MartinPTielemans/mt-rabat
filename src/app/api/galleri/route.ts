@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 const utapi = new UTApi();
 
+export const dynamic = 'force-dynamic'; // Never cache this route
+
 export async function GET() {
   try {
     // Get all files uploaded with the imageUploader endpoint
@@ -13,12 +15,29 @@ export async function GET() {
       file.status === "Uploaded"
     );
     
-    return NextResponse.json({ images: imageFiles });
+    // Return response with cache control headers
+    return NextResponse.json(
+      { images: imageFiles },
+      { 
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        } 
+      }
+    );
   } catch (error) {
     console.error("Error fetching galleri images:", error);
     return NextResponse.json(
       { error: "Kunne ikke hente billeder" },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        }
+      }
     );
   }
 } 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useGalleryImages } from "@/hooks/useGalleryImages";
@@ -17,7 +17,26 @@ type ImageFile = {
 export default function Gallery() {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const [selectedImage, setSelectedImage] = useState<ImageFile | null>(null);
-  const { data: images, isLoading, error } = useGalleryImages();
+  const {
+    data: images,
+    isLoading,
+    error,
+    isError,
+    refetch,
+  } = useGalleryImages();
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Force a refetch when the component mounts
+  useEffect(() => {
+    // Force a refetch on mount
+    refetch().then(() => {
+      setIsInitialLoad(false);
+    });
+
+    return () => {
+      // Cleanup
+    };
+  }, [refetch]);
 
   const handleImageLoad = (imageId: string) => {
     setLoadedImages((prev) => ({
@@ -36,7 +55,8 @@ export default function Gallery() {
     document.body.style.overflow = "auto";
   };
 
-  if (isLoading) {
+  // Always show loading on first render
+  if (isInitialLoad || isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -44,12 +64,18 @@ export default function Gallery() {
     );
   }
 
-  if (error) {
+  if (isError || error) {
     return (
       <div className="text-center py-10">
-        <p className="text-red-500">
+        <p className="text-red-500 mb-4">
           Kunne ikke indlæse billeder. Prøv venligst igen senere.
         </p>
+        <button
+          onClick={() => refetch()}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          Prøv igen
+        </button>
       </div>
     );
   }
@@ -57,7 +83,13 @@ export default function Gallery() {
   if (!images || images.length === 0) {
     return (
       <div className="text-center py-10">
-        <p>Ingen billeder fundet. Upload venligst nogle billeder først.</p>
+        <p className="mb-4">Ingen billeder fundet.</p>
+        <button
+          onClick={() => refetch()}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          Opdater galleri
+        </button>
       </div>
     );
   }
