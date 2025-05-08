@@ -6,7 +6,8 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { Header } from "@/components/layout/header";
 import { Providers } from "./providers";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -30,6 +31,8 @@ export default function RootLayout({
           <ScrollToTop />
           <Toaster />
         </Providers>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

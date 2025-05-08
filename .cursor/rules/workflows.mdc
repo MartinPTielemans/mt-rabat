@@ -43,7 +43,7 @@ alwaysApply: true
 {
   "description": "Add a new Package from npm",
   "steps": [
-    "use Bun add {npmPackage}"
+    "use bun add {npmPackage}"
   ]
 }
 
