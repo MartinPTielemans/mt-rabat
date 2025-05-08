@@ -4,10 +4,8 @@ import { motion } from "motion/react";
 import { Logo } from "@/components/ui/logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { usePrefetchGalleryImages } from "@/hooks/useGalleryImages";
-import { useQueryClient } from "@tanstack/react-query";
 
 const navLinks = [
   { href: "/", label: "Hjem" },
@@ -21,48 +19,9 @@ const navLinks = [
 export function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { prefetchImages } = usePrefetchGalleryImages();
-  const queryClient = useQueryClient();
-
-  // Always prefetch gallery images when the header mounts and whenever the pathname changes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      prefetchGalleryImages();
-    }, 500); // Slight delay to ensure other critical resources load first
-
-    return () => clearTimeout(timer);
-  }, [pathname]); // Re-run when pathname changes
-
-  const prefetchGalleryImages = () => {
-    // Use TanStack Query's built-in prefetching with stale time of 0 to force fetch
-    queryClient.prefetchQuery({
-      queryKey: ["galleryImages"],
-      queryFn: async () => {
-        // This also triggers our manual image prefetching
-        await prefetchImages();
-        return null;
-      },
-      staleTime: 0, // Always consider data stale
-    });
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Function to handle link hover based on link href
-  const handleLinkHover = (href: string) => {
-    if (href === "/galleri") {
-      prefetchGalleryImages();
-    }
-  };
-
-  // Function to handle link click for prefetching
-  const handleLinkClick = (href: string) => {
-    if (href === "/galleri") {
-      // Force a refresh of gallery data on click
-      prefetchGalleryImages();
-    }
   };
 
   return (
@@ -84,7 +43,6 @@ export function Header() {
               transition={{ delay: 0.1 * i, duration: 0.5 }}
               whileHover={{ scale: pathname !== link.href ? 1.05 : 1 }}
               whileTap={{ scale: pathname !== link.href ? 0.95 : 1 }}
-              onMouseEnter={() => handleLinkHover(link.href)}
             >
               {pathname === link.href ? (
                 <span
@@ -104,7 +62,6 @@ export function Header() {
                 <Link
                   href={link.href}
                   className="relative text-gray-600 hover:text-blue-600 transition-colors"
-                  onClick={() => handleLinkClick(link.href)}
                 >
                   {link.label}
                 </Link>
@@ -151,9 +108,7 @@ export function Header() {
                   className="px-6 py-3 hover:bg-gray-50"
                   onClick={() => {
                     setIsMenuOpen(false);
-                    handleLinkClick(link.href);
                   }}
-                  onMouseEnter={() => handleLinkHover(link.href)}
                 >
                   {link.label}
                 </Link>

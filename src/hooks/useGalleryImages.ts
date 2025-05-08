@@ -46,40 +46,10 @@ export function useGalleryImages() {
   return useQuery({
     queryKey: ['galleryImages'],
     queryFn: fetchGalleryImages,
-    staleTime: 0, // Always consider data stale to encourage refetching
-    gcTime: 1000 * 60 * 60, // 1 hour
-    refetchOnMount: 'always', // Always refetch when component mounts
-    refetchOnWindowFocus: true, // Refetch when window regains focus
-    retry: 3, // Retry failed requests 3 times
+    staleTime: 5 * 60 * 1000, // 5 minutes - consider data fresh for 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes - keep data in cache for 10 minutes
+    refetchOnMount: true, // Refetch when component mounts if data is stale
+    refetchOnWindowFocus: false, // Don't refetch when window regains focus
+    retry: 2, // Retry failed requests 2 times
   });
-}
-
-// Helper hook to prefetch gallery images on hover/focus
-export function usePrefetchGalleryImages() {
-  // This function can be called when hovering over gallery links
-  const prefetchImages = async () => {
-    // Create new Image objects to preload the first 12 images
-    const prefetchFirstBatch = (images: ImageFile[]) => {
-      const imagesToPreload = images.slice(0, 12);
-      
-      imagesToPreload.forEach((image: ImageFile) => {
-        if (image.url) {
-          const img = new window.Image();
-          img.src = image.url;
-        }
-      });
-    };
-
-    try {
-      // Fetch the images data
-      const images = await fetchGalleryImages();
-      prefetchFirstBatch(images);
-      return true;
-    } catch (error) {
-      console.error('Error prefetching gallery images:', error);
-      return false;
-    }
-  };
-
-  return { prefetchImages };
 }

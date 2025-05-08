@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useGalleryImages } from "@/hooks/useGalleryImages";
@@ -24,19 +24,6 @@ export default function Gallery() {
     isError,
     refetch,
   } = useGalleryImages();
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-
-  // Force a refetch when the component mounts
-  useEffect(() => {
-    // Force a refetch on mount
-    refetch().then(() => {
-      setIsInitialLoad(false);
-    });
-
-    return () => {
-      // Cleanup
-    };
-  }, [refetch]);
 
   const handleImageLoad = (imageId: string) => {
     setLoadedImages((prev) => ({
@@ -55,8 +42,7 @@ export default function Gallery() {
     document.body.style.overflow = "auto";
   };
 
-  // Always show loading on first render
-  if (isInitialLoad || isLoading) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
