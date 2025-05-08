@@ -6,6 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { usePrefetchGalleryImages } from "@/hooks/useGalleryImages";
+import { useQueryClient } from "@tanstack/react-query";
 
 const navLinks = [
   { href: "/", label: "Hjem" },
@@ -19,9 +21,26 @@ const navLinks = [
 export function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { prefetchImages } = usePrefetchGalleryImages();
+  const queryClient = useQueryClient();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Function to handle link hover based on link href
+  const handleLinkHover = (href: string) => {
+    if (href === "/galleri") {
+      // Use TanStack Query's built-in prefetching
+      queryClient.prefetchQuery({
+        queryKey: ["galleryImages"],
+        queryFn: async () => {
+          // This also triggers our manual image prefetching
+          await prefetchImages();
+          return null;
+        },
+      });
+    }
   };
 
   return (
@@ -43,6 +62,7 @@ export function Header() {
               transition={{ delay: 0.1 * i, duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onMouseEnter={() => handleLinkHover(link.href)}
             >
               <Link
                 href={link.href}
@@ -97,6 +117,7 @@ export function Header() {
                     : "hover:bg-gray-50"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
+                onMouseEnter={() => handleLinkHover(link.href)}
               >
                 {link.label}
               </Link>

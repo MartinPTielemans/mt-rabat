@@ -36,4 +36,16 @@ alwaysApply: true
     "Create file: src/components/{name}/{name}.tsx using Component template"
   ]
 }
+
 ```
+# newNpmPackage
+```json
+{
+  "description": "Add a new Package from npm",
+  "steps": [
+    "use Bun add {npmPackage}"
+  ]
+}
+
+```
+

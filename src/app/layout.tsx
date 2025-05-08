@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { Header } from "@/components/layout/header";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +23,13 @@ export default function RootLayout({
   return (
     <html lang="da">
       <body className={inter.className}>
-        <ScrollProgress />
-        <Header />
-        {children}
-        <ScrollToTop />
-        <Toaster />
+        <Providers>
+          <ScrollProgress />
+          <Header />
+          {children}
+          <ScrollToTop />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
