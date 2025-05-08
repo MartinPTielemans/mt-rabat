@@ -1,0 +1,24 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Paths
+
+```json
+["src/components/**/*.tsx", "src/app/**/*.tsx"]
+```
+
+# Root
+
+```json
+"./src"
+```
+
+# Imports
+
+```json
+{
+  "prefix": "@/"
+}
+```

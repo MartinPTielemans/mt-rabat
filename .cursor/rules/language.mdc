@@ -1,0 +1,43 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Default
+
+```json
+"da-DK"
+```
+
+# Fallback
+
+```json
+"en"
+```
+
+# Translations
+
+## Routing
+
+```json
+{
+  "home": "hjem",
+  "about": "om",
+  "contact": "kontakt",
+  "products": "produkter",
+  "services": "tjenester"
+}
+```
+
+## Common
+
+```json
+{
+  "submit": "Send",
+  "cancel": "Annuller",
+  "save": "Gem",
+  "loading": "Indlæser...",
+  "error": "Fejl",
+  "success": "Succes"
+}
+```

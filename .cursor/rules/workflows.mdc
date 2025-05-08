@@ -1,0 +1,39 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# nextjsRoute
+
+```json
+{
+  "description": "Create a new Next.js route",
+  "steps": [
+    "Create file: src/app/{path}/page.tsx using Page template",
+    "Create file: src/app/{path}/layout.tsx using Layout template"
+  ]
+}
+```
+
+# danishRoute
+
+```json
+{
+  "description": "Create a new Danish Next.js route",
+  "steps": [
+    "Create file: src/app/{path}/page.tsx using DanishPage template",
+    "Create file: src/app/{path}/layout.tsx using Layout template"
+  ]
+}
+```
+
+# newComponent
+
+```json
+{
+  "description": "Create a new component with tests",
+  "steps": [
+    "Create file: src/components/{name}/{name}.tsx using Component template"
+  ]
+}
+```

@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Paths
+
+```json
+["src/hooks/**/*.ts", "src/hooks/**/*.tsx"]
+```
+
+# Root
+
+```json
+"./src"
+```

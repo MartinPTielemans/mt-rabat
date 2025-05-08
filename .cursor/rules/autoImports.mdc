@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# React
+
+```json
+["useState", "useEffect", "useCallback", "useMemo", "useRef"]
+```
+
+# @/lib/utils
+
+```json
+["cn"]
+```
