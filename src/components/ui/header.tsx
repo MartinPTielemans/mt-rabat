@@ -3,11 +3,30 @@
 import { motion } from "motion/react";
 import { Logo } from "./logo";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/om-os", label: "Om os" },
+  { href: "/services", label: "Services" },
+  { href: "/projekter", label: "Projekter" },
+  { href: "/kontakt", label: "Kontakt" },
+];
 
 export function Header() {
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <motion.header
-      className="bg-white shadow-sm py-4 sticky top-0 z-40"
+      className="bg-white/80 backdrop-blur-md shadow-sm py-4 sticky top-0 z-40"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -16,9 +35,9 @@ export function Header() {
         <Logo />
 
         <motion.nav className="hidden md:flex space-x-8">
-          {["Om os", "Services", "Projekter", "Kontakt"].map((item, i) => (
+          {navLinks.map((link, i) => (
             <motion.div
-              key={item}
+              key={link.href}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i, duration: 0.5 }}
@@ -26,37 +45,65 @@ export function Header() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-gray-600 hover:text-blue-600 transition-colors"
+                href={link.href}
+                className={`relative text-gray-600 hover:text-blue-600 transition-colors ${
+                  pathname === link.href ? "text-blue-600 font-medium" : ""
+                }`}
               >
-                {item}
+                {link.label}
+                {pathname === link.href && (
+                  <motion.div
+                    layoutId="underline"
+                    className="absolute left-0 top-full h-0.5 w-full bg-blue-600"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
               </Link>
             </motion.div>
           ))}
         </motion.nav>
 
+        {/* Mobile menu button */}
         <motion.button
-          className="md:hidden"
+          onClick={toggleMenu}
+          className="md:hidden p-2"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
       </div>
+
+      {/* Mobile navigation */}
+      {isMenuOpen && (
+        <motion.nav
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.2 }}
+          className="md:hidden absolute left-0 right-0 bg-white shadow-md mt-4"
+        >
+          <div className="flex flex-col py-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`px-6 py-3 ${
+                  pathname === link.href
+                    ? "text-blue-600 font-medium bg-blue-50"
+                    : "hover:bg-gray-50"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </motion.nav>
+      )}
     </motion.header>
   );
 }

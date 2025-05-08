@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { Header } from "@/components/ui/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="da">
       <body className={inter.className}>
         <ScrollProgress />
+        <Header />
         {children}
         <ScrollToTop />
         <Toaster />

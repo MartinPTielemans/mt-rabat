@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components/ui/header";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { SecondFeaturesSection } from "@/components/sections/SecondFeaturesSection";
@@ -10,7 +9,6 @@ import { Footer } from "@/components/layout/Footer";
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Header />
       <HeroSection />
       <FeaturesSection />
       <SecondFeaturesSection />
