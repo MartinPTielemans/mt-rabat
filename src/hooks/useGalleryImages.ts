@@ -1,14 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 
-type ImageFile = {
-  id: string;
-  name: string;
-  key: string;
-  url?: string;
-  size: number;
-  uploadedAt: number;
-};
-
 // Function to fetch gallery images
 async function fetchGalleryImages() {
   try {
@@ -30,26 +21,19 @@ async function fetchGalleryImages() {
       throw new Error('Invalid response format');
     }
     
-    // Add URL property to each image
-    return data.images.map((img: ImageFile) => ({
-      ...img,
-      url: `https://utfs.io/f/${img.key.split('/').pop()}`,
-    }));
+    return data.images;
   } catch (error) {
     console.error('Error fetching gallery images:', error);
     throw error;
   }
 }
 
-// Hook that uses TanStack Query to fetch and cache gallery images
+// Hook to fetch gallery images with react-query
 export function useGalleryImages() {
   return useQuery({
-    queryKey: ['galleryImages'],
+    queryKey: ['gallery-images'],
     queryFn: fetchGalleryImages,
-    staleTime: 5 * 60 * 1000, // 5 minutes - consider data fresh for 5 minutes
-    gcTime: 10 * 60 * 1000, // 10 minutes - keep data in cache for 10 minutes
-    refetchOnMount: true, // Refetch when component mounts if data is stale
-    refetchOnWindowFocus: false, // Don't refetch when window regains focus
-    retry: 2, // Retry failed requests 2 times
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 }

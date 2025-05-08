@@ -1,19 +1,12 @@
-import { UTApi } from "uploadthing/server";
 import { NextResponse } from "next/server";
-
-const utapi = new UTApi();
+import { listFiles } from "@/lib/cloudflare";
 
 export const dynamic = 'force-dynamic'; // Never cache this route
 
 export async function GET() {
   try {
-    // Get all files uploaded with the imageUploader endpoint
-    const response = await utapi.listFiles();
-    
-    // Filter to only image files that aren't deleted
-    const imageFiles = response.files.filter(file => 
-      file.status === "Uploaded"
-    );
+    // Get all files from Cloudflare R2 bucket
+    const imageFiles = await listFiles();
     
     // Return response with cache control headers
     return NextResponse.json(
