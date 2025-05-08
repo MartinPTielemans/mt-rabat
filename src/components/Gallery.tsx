@@ -23,10 +23,10 @@ export default function Gallery() {
     async function fetchImages() {
       try {
         setLoading(true);
-        const response = await fetch("/api/gallery");
+        const response = await fetch("/api/galleri");
 
         if (!response.ok) {
-          throw new Error("Failed to fetch images");
+          throw new Error("Kunne ikke hente billeder");
         }
 
         const data = await response.json();
@@ -40,7 +40,7 @@ export default function Gallery() {
         setImages(imagesWithUrls);
       } catch (err) {
         console.error("Error fetching images:", err);
-        setError("Failed to load images. Please try again later.");
+        setError("Kunne ikke indlæse billeder. Prøv venligst igen senere.");
       } finally {
         setLoading(false);
       }
@@ -78,7 +78,7 @@ export default function Gallery() {
   if (images.length === 0) {
     return (
       <div className="text-center py-10">
-        <p>No images found. Please upload some images first.</p>
+        <p>Ingen billeder fundet. Upload venligst nogle billeder først.</p>
       </div>
     );
   }
@@ -100,7 +100,7 @@ export default function Gallery() {
             <div className="relative aspect-square">
               <Image
                 src={image.url || ""}
-                alt={image.name || "Gallery image"}
+                alt={image.name || "Galleri billede"}
                 fill
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
@@ -124,14 +124,14 @@ export default function Gallery() {
             <button
               onClick={closeModal}
               className="absolute -top-10 right-0 text-white text-2xl"
-              aria-label="Close modal"
+              aria-label="Luk modal"
             >
               &times;
             </button>
             <div className="relative w-full h-[80vh]">
               <Image
                 src={selectedImage.url || ""}
-                alt={selectedImage.name || "Selected image"}
+                alt={selectedImage.name || "Valgt billede"}
                 fill
                 className="object-contain"
                 sizes="100vw"

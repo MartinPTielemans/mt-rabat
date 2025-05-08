@@ -30,9 +30,9 @@ export function Footer() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Telefon: +45 73 22 50 50</li>
-                <li>Email: info@marcel-tielemans.dk</li>
-                <li>Adresse: Søndergård Alle 4, 6500 Vojens</li>
+                <li>Telefon: +45 40 48 64 80</li>
+                <li>Email: m.t@live.dk</li>
+                <li>Adresse: Kollund Byvej 45 7400 Herning</li>
               </ul>
             </div>
           </FadeIn>

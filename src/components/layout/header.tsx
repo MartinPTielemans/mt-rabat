@@ -1,17 +1,17 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Logo } from "./logo";
+import { Logo } from "@/components/ui/logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/gallery", label: "Gallery" },
+  { href: "/", label: "Hjem" },
+  { href: "/galleri", label: "Galleri" },
   { href: "/om-os", label: "Om os" },
-  { href: "/services", label: "Services" },
+  { href: "/ydelser", label: "Ydelser" },
   { href: "/projekter", label: "Projekter" },
   { href: "/kontakt", label: "Kontakt" },
 ];
@@ -71,7 +71,7 @@ export function Header() {
           className="md:hidden p-2"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={isMenuOpen ? "Luk menu" : "Åbn menu"}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>

@@ -13,7 +13,7 @@ export function ContactInfo() {
               <Phone className="h-5 w-5 text-blue-600 mt-0.5 mr-3" />
               <div>
                 <p className="font-medium">Telefon</p>
-                <p className="text-gray-600">+45 73 22 50 50</p>
+                <p className="text-gray-600">+45 40 48 64 80</p>
               </div>
             </div>
           </StaggerItem>
@@ -23,7 +23,7 @@ export function ContactInfo() {
               <Mail className="h-5 w-5 text-blue-600 mt-0.5 mr-3" />
               <div>
                 <p className="font-medium">Email</p>
-                <p className="text-gray-600">info@marcel-tielemans.dk</p>
+                <p className="text-gray-600">m.t@live.dk</p>
               </div>
             </div>
           </StaggerItem>
@@ -34,8 +34,9 @@ export function ContactInfo() {
               <div>
                 <p className="font-medium">Adresse</p>
                 <p className="text-gray-600">
-                  Søndergård Alle 4<br />
-                  6500 Vojens
+                  Kollund Byvej 45
+                  <br />
+                  7400 Herning
                 </p>
               </div>
             </div>
