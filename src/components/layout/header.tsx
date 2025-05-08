@@ -82,19 +82,16 @@ export function Header() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i, duration: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: pathname !== link.href ? 1.05 : 1 }}
+              whileTap={{ scale: pathname !== link.href ? 0.95 : 1 }}
               onMouseEnter={() => handleLinkHover(link.href)}
             >
-              <Link
-                href={link.href}
-                className={`relative text-gray-600 hover:text-blue-600 transition-colors ${
-                  pathname === link.href ? "text-blue-600 font-medium" : ""
-                }`}
-                onClick={() => handleLinkClick(link.href)}
-              >
-                {link.label}
-                {pathname === link.href && (
+              {pathname === link.href ? (
+                <span
+                  className="relative text-blue-600 font-medium cursor-default"
+                  aria-current="page"
+                >
+                  {link.label}
                   <motion.div
                     layoutId="underline"
                     className="absolute left-0 top-full h-0.5 w-full bg-blue-600"
@@ -102,8 +99,16 @@ export function Header() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                   />
-                )}
-              </Link>
+                </span>
+              ) : (
+                <Link
+                  href={link.href}
+                  className="relative text-gray-600 hover:text-blue-600 transition-colors"
+                  onClick={() => handleLinkClick(link.href)}
+                >
+                  {link.label}
+                </Link>
+              )}
             </motion.div>
           ))}
         </motion.nav>
@@ -130,24 +135,30 @@ export function Header() {
           className="md:hidden absolute left-0 right-0 bg-white shadow-md mt-4"
         >
           <div className="flex flex-col py-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`px-6 py-3 ${
-                  pathname === link.href
-                    ? "text-blue-600 font-medium bg-blue-50"
-                    : "hover:bg-gray-50"
-                }`}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  handleLinkClick(link.href);
-                }}
-                onMouseEnter={() => handleLinkHover(link.href)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              pathname === link.href ? (
+                <span
+                  key={link.href}
+                  className="px-6 py-3 text-blue-600 font-medium bg-blue-50 cursor-default"
+                  aria-current="page"
+                >
+                  {link.label}
+                </span>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="px-6 py-3 hover:bg-gray-50"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    handleLinkClick(link.href);
+                  }}
+                  onMouseEnter={() => handleLinkHover(link.href)}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
         </motion.nav>
       )}
