@@ -4,30 +4,25 @@ import { db, blogPosts } from "@/db";
 import { desc } from "drizzle-orm";
 
 export const metadata: Metadata = {
-  title: "Projekter",
-  description: "Projekter og blogindlæg fra MT Rabat",
+  title: "Blog",
+  description: "Blog og nyheder fra MT Rabat",
 };
 
 export const dynamic = "force-dynamic";
 
-export default async function ProjekterPage() {
+export default async function BlogPage() {
   // Fetch all blog posts
   const posts = await db.query.blogPosts.findMany({
     orderBy: [desc(blogPosts.createdAt)],
   });
 
   return (
-    <main className="container mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold mb-8">Projekter</h1>
-      <p className="mb-8 max-w-3xl">
-        Herunder finder du et udvalg af vores seneste projekter og blogindlæg.
-        Vi er stolte af vores arbejde og deler gerne disse eksempler på den
-        kvalitet og det håndværk, vi leverer til vores kunder.
-      </p>
+    <main className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-8 text-center">Blog</h1>
 
       {posts.length === 0 ? (
         <p className="text-center py-8 text-gray-500">
-          Ingen projekter eller blogindlæg fundet.
+          Ingen blogindlæg fundet.
         </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

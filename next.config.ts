@@ -4,11 +4,13 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
       remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**.r2.cloudflarestorage.com",
-      },
-    ],
+        {
+          protocol: 'https',
+          hostname: 'utfs.io',
+          port: '',
+          pathname: '/f/**',
+        }
+      ],
   },
   async redirects() {
     return [
