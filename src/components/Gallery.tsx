@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useGalleryImages } from "@/hooks/useGalleryImages";
 
 type ImageFile = {
   id: string;
@@ -14,40 +15,16 @@ type ImageFile = {
 };
 
 export default function Gallery() {
-  const [images, setImages] = useState<ImageFile[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const [selectedImage, setSelectedImage] = useState<ImageFile | null>(null);
+  const { data: images, isLoading, error } = useGalleryImages();
 
-  useEffect(() => {
-    async function fetchImages() {
-      try {
-        setLoading(true);
-        const response = await fetch("/api/galleri");
-
-        if (!response.ok) {
-          throw new Error("Kunne ikke hente billeder");
-        }
-
-        const data = await response.json();
-
-        // Add URL property to each image
-        const imagesWithUrls = data.images.map((img: ImageFile) => ({
-          ...img,
-          url: `https://utfs.io/f/${img.key.split("/").pop()}`,
-        }));
-
-        setImages(imagesWithUrls);
-      } catch (err) {
-        console.error("Error fetching images:", err);
-        setError("Kunne ikke indlæse billeder. Prøv venligst igen senere.");
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchImages();
-  }, []);
+  const handleImageLoad = (imageId: string) => {
+    setLoadedImages((prev) => ({
+      ...prev,
+      [imageId]: true,
+    }));
+  };
 
   const openModal = (image: ImageFile) => {
     setSelectedImage(image);
@@ -59,7 +36,7 @@ export default function Gallery() {
     document.body.style.overflow = "auto";
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -70,12 +47,14 @@ export default function Gallery() {
   if (error) {
     return (
       <div className="text-center py-10">
-        <p className="text-red-500">{error}</p>
+        <p className="text-red-500">
+          Kunne ikke indlæse billeder. Prøv venligst igen senere.
+        </p>
       </div>
     );
   }
 
-  if (images.length === 0) {
+  if (!images || images.length === 0) {
     return (
       <div className="text-center py-10">
         <p>Ingen billeder fundet. Upload venligst nogle billeder først.</p>
@@ -86,17 +65,22 @@ export default function Gallery() {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {images.map((image, index) => (
+        {images.map((image: ImageFile, index: number) => (
           <motion.div
             key={image.id}
-            className="overflow-hidden rounded-lg shadow-lg cursor-pointer"
+            className="overflow-hidden rounded-lg shadow-lg cursor-pointer relative aspect-square"
             onClick={() => openModal(image)}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
+            animate={{ opacity: loadedImages[image.id] ? 1 : 0.3, y: 0 }}
+            transition={{ duration: 0.3 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
+            {!loadedImages[image.id] && (
+              <div className="absolute inset-0 flex justify-center items-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+              </div>
+            )}
             <div className="relative aspect-square">
               <Image
                 src={image.url || ""}
@@ -104,6 +88,7 @@ export default function Gallery() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                onLoad={() => handleImageLoad(image.id)}
                 priority={index < 4}
               />
             </div>
