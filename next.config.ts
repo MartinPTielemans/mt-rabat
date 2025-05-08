@@ -3,22 +3,28 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    remotePatterns: [
+      remotePatterns: [
       {
-        hostname: "utfs.io",
+        protocol: "https",
+        hostname: "**.r2.cloudflarestorage.com",
       },
     ],
   },
   async redirects() {
     return [
       {
-        source: '/gallery',
+        source: "/gallery",
         destination: '/galleri',
         permanent: true,
       },
       {
         source: '/services',
         destination: '/ydelser',
+        permanent: true,
+      },
+      {
+        source: '/skills',
+        destination: '/kompetencer',
         permanent: true,
       },
     ];

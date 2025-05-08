@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/galleri", label: "Galleri" },
   { href: "/om-os", label: "Om os" },
   { href: "/ydelser", label: "Ydelser" },
+  { href: "/kompetencer", label: "Kompetencer" },
   { href: "/projekter", label: "Projekter" },
   { href: "/kontakt", label: "Kontakt" },
 ];
