@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   description: "Galleri med uploadede billeder",
 };
 
-export default function GalleriPage() {
+export default function GalleryPage() {
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-center">Billedgalleri</h1>
+    <main className="container mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-8 text-center">Galleri</h1>
       <Gallery />
     </main>
   );
