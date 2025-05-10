@@ -59,7 +59,7 @@ export default async function ProjekterPage() {
               key={project._id}
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <div className="relative aspect-video">
+              <div className="relative aspect-[3/4] w-full">
                 <Image
                   src={urlFor(project.mainImage).url()}
                   alt={project.title}

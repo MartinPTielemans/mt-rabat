@@ -29,12 +29,12 @@ export default async function Gallery() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {galleries.flatMap((gallery) =>
         gallery.images?.map((image, index) => (
-          <div key={`${gallery._id}-${index}`} className="relative">
+          <div key={`${gallery._id}-${index}`} className="relative aspect-square">
             <Image
               src={urlFor(image).url()}
               alt="Gallery image"
               fill
-              className="object-contain rounded-lg"
+              className="object-cover rounded-lg"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
