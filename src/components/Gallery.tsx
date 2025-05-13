@@ -15,7 +15,7 @@ async function getGalleryImages() {
     _id,
     images
   }`
-  return client.fetch<GalleryImage[]>(query)
+  return client.fetch<GalleryImage[]>(query, {}, { next: { revalidate: 60 } })
 }
 
 export default async function Gallery() {
