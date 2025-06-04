@@ -1,6 +1,57 @@
 import { defineQuery } from "next-sanity";
 
-export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
+export const settingsQuery = defineQuery(`*[_type == "settings"][0]{
+  title,
+  description,
+  ogImage
+}`);
+
+export const homepageQuery = defineQuery(`*[_type == "homepage"][0]{
+  hero{
+    title,
+    subtitle,
+    backgroundImage{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    primaryButtonText,
+    secondaryButtonText
+  },
+  mainContent{
+    title,
+    description,
+    features[]{
+      title,
+      description,
+      icon
+    }
+  },
+  capabilities{
+    title,
+    description,
+    leftColumn{
+      title,
+      content
+    },
+    rightColumn{
+      title,
+      content
+    }
+  },
+  contactSection{
+    title,
+    description,
+    buttonText
+  },
+  recentProjects{
+    title,
+    description,
+    viewAllText
+  }
+}`);
 
 const postFields = /* groq */ `
   _id,

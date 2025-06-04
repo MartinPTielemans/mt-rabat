@@ -150,6 +150,93 @@ export type Settings = {
     _type: "block";
     _key: string;
   }>;
+  homepage?: {
+    hero?: {
+      title: string;
+      subtitle: string;
+      backgroundImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt: string;
+        _type: "image";
+      };
+      primaryButtonText?: string;
+      secondaryButtonText?: string;
+    };
+    mainContent?: {
+      title: string;
+      description: string;
+      features?: Array<{
+        title: string;
+        description: string;
+        icon?: string;
+        _key: string;
+      }>;
+    };
+    capabilities?: {
+      title: string;
+      description: string;
+      leftColumn?: {
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+      };
+      rightColumn?: {
+        title?: string;
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+      };
+    };
+    contactSection?: {
+      title: string;
+      description: string;
+      buttonText?: string;
+    };
+    recentProjects?: {
+      title: string;
+      description?: string;
+      viewAllText?: string;
+    };
+  };
   ogImage?: {
     asset?: {
       _ref: string;
@@ -481,15 +568,10 @@ export type AllSanitySchemaTypes = CallToAction | Link | InfoSection | BlockCont
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0]
+// Query: *[_type == "settings"][0]{  title,  description,  ogImage}
 export type SettingsQueryResult = {
-  _id: string;
-  _type: "settings";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
   title: string;
-  description?: Array<{
+  description: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -520,8 +602,8 @@ export type SettingsQueryResult = {
     level?: number;
     _type: "block";
     _key: string;
-  }>;
-  ogImage?: {
+  }> | null;
+  ogImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -534,8 +616,11 @@ export type SettingsQueryResult = {
     alt?: string;
     metadataBase?: string;
     _type: "image";
-  };
+  } | null;
 } | null;
+// Variable: homepageQuery
+// Query: *[_type == "homepage"][0]{  hero{    title,    subtitle,    backgroundImage{      asset->{        _id,        url      },      alt    },    primaryButtonText,    secondaryButtonText  },  mainContent{    title,    description,    features[]{      title,      description,      icon    }  },  capabilities{    title,    description,    leftColumn{      title,      content    },    rightColumn{      title,      content    }  },  contactSection{    title,    description,    buttonText  },  recentProjects{    title,    description,    viewAllText  }}
+export type HomepageQueryResult = null;
 // Variable: getPageQuery
 // Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },    },  }
 export type GetPageQueryResult = {
@@ -756,7 +841,8 @@ export type PagesSlugsResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"settings\"][0]": SettingsQueryResult;
+    "*[_type == \"settings\"][0]{\n  title,\n  description,\n  ogImage\n}": SettingsQueryResult;
+    "*[_type == \"homepage\"][0]{\n  hero{\n    title,\n    subtitle,\n    backgroundImage{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    primaryButtonText,\n    secondaryButtonText\n  },\n  mainContent{\n    title,\n    description,\n    features[]{\n      title,\n      description,\n      icon\n    }\n  },\n  capabilities{\n    title,\n    description,\n    leftColumn{\n      title,\n      content\n    },\n    rightColumn{\n      title,\n      content\n    }\n  },\n  contactSection{\n    title,\n    description,\n    buttonText\n  },\n  recentProjects{\n    title,\n    description,\n    viewAllText\n  }\n}": HomepageQueryResult;
     "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    \"pageBuilder\": pageBuilder[]{\n      ...,\n      _type == \"callToAction\" => {\n        \n  link {\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n      }\n,\n      },\n      _type == \"infoSection\" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n": GetPageQueryResult;
     "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;
