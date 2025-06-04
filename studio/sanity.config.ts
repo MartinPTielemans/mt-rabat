@@ -68,6 +68,7 @@ export default defineConfig({
       // Allow both local and production origins
       allowOrigins: [
         'http://localhost:3000',
+        "mt-rabat-git-next-martin-p-tielemans-projects.vercel.app",
         'https://mt-rabat.vercel.app', // Replace with your actual Vercel URL
       ],
       resolve: {
