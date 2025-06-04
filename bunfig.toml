@@ -1,7 +1,0 @@
-[install]
-peer = true
-exact = true
-optional = false
-
-[dev]
-port = 3000 
