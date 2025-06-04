@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { AllPosts } from "@/app/components/Posts";
+import Link from "next/link";
 
 export default function BlogPage() {
   return (
@@ -45,7 +46,7 @@ export default function BlogPage() {
                 Vi har netop investeret i en splinterny CAT 320 gravemaskine, som udvider vores kapacitet betydeligt. 
                 Med den seneste teknologi og forbedret brændstofeffektivitet kan vi nu tilbyde endnu bedre service.
               </p>
-              <a
+              <Link
                 href="/blog/ny-cat-320-gravemaskine"
                 className="inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
               >
@@ -53,7 +54,7 @@ export default function BlogPage() {
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function GalleriPage() {
   return (
     <main className="py-20">
@@ -94,12 +96,12 @@ export default function GalleriPage() {
               Kontakt os i dag, så finder vi den bedste løsning sammen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/kontakt"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
               >
                 Kontakt os
-              </a>
+              </Link>
               <a
                 href="tel:+45XXXXXXXX"
                 className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
