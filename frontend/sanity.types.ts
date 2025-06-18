@@ -111,6 +111,99 @@ export type BlockContent = Array<{
   _key: string;
 }>;
 
+export type Homepage = {
+  _id: string;
+  _type: "homepage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  hero?: {
+    title: string;
+    subtitle: string;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt: string;
+      _type: "image";
+    };
+    primaryButtonText?: string;
+    secondaryButtonText?: string;
+  };
+  mainContent?: {
+    title: string;
+    description: string;
+    features?: Array<{
+      title: string;
+      description: string;
+      icon?: "settings" | "box" | "eye" | "shield" | "tools" | "star";
+      _key: string;
+    }>;
+  };
+  capabilities?: {
+    title: string;
+    description: string;
+    leftColumn?: {
+      title?: string;
+      content?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+    };
+    rightColumn?: {
+      title?: string;
+      content?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+    };
+  };
+  contactSection?: {
+    title: string;
+    description: string;
+    buttonText?: string;
+  };
+  recentProjects?: {
+    title: string;
+    description?: string;
+    viewAllText?: string;
+  };
+};
+
 export type Settings = {
   _id: string;
   _type: "settings";
@@ -150,93 +243,6 @@ export type Settings = {
     _type: "block";
     _key: string;
   }>;
-  homepage?: {
-    hero?: {
-      title: string;
-      subtitle: string;
-      backgroundImage?: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt: string;
-        _type: "image";
-      };
-      primaryButtonText?: string;
-      secondaryButtonText?: string;
-    };
-    mainContent?: {
-      title: string;
-      description: string;
-      features?: Array<{
-        title: string;
-        description: string;
-        icon?: string;
-        _key: string;
-      }>;
-    };
-    capabilities?: {
-      title: string;
-      description: string;
-      leftColumn?: {
-        title?: string;
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-            href?: string;
-            _type: "link";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }>;
-      };
-      rightColumn?: {
-        title?: string;
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-            href?: string;
-            _type: "link";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }>;
-      };
-    };
-    contactSection?: {
-      title: string;
-      description: string;
-      buttonText?: string;
-    };
-    recentProjects?: {
-      title: string;
-      description?: string;
-      viewAllText?: string;
-    };
-  };
   ogImage?: {
     asset?: {
       _ref: string;
@@ -564,7 +570,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = CallToAction | Link | InfoSection | BlockContent | Settings | Page | Post | Person | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = CallToAction | Link | InfoSection | BlockContent | Homepage | Settings | Page | Post | Person | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -620,7 +626,86 @@ export type SettingsQueryResult = {
 } | null;
 // Variable: homepageQuery
 // Query: *[_type == "homepage"][0]{  hero{    title,    subtitle,    backgroundImage{      asset->{        _id,        url      },      alt    },    primaryButtonText,    secondaryButtonText  },  mainContent{    title,    description,    features[]{      title,      description,      icon    }  },  capabilities{    title,    description,    leftColumn{      title,      content    },    rightColumn{      title,      content    }  },  contactSection{    title,    description,    buttonText  },  recentProjects{    title,    description,    viewAllText  }}
-export type HomepageQueryResult = null;
+export type HomepageQueryResult = {
+  hero: {
+    title: string;
+    subtitle: string;
+    backgroundImage: {
+      asset: {
+        _id: string;
+        url: string | null;
+      } | null;
+      alt: string;
+    } | null;
+    primaryButtonText: string | null;
+    secondaryButtonText: string | null;
+  } | null;
+  mainContent: {
+    title: string;
+    description: string;
+    features: Array<{
+      title: string;
+      description: string;
+      icon: "box" | "eye" | "settings" | "shield" | "star" | "tools" | null;
+    }> | null;
+  } | null;
+  capabilities: {
+    title: string;
+    description: string;
+    leftColumn: {
+      title: string | null;
+      content: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
+    } | null;
+    rightColumn: {
+      title: string | null;
+      content: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
+    } | null;
+  } | null;
+  contactSection: {
+    title: string;
+    description: string;
+    buttonText: string | null;
+  } | null;
+  recentProjects: {
+    title: string;
+    description: string | null;
+    viewAllText: string | null;
+  } | null;
+} | null;
 // Variable: getPageQuery
 // Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },    },  }
 export type GetPageQueryResult = {
