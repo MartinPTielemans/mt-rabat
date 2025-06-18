@@ -111,6 +111,106 @@ export type BlockContent = Array<{
   _key: string;
 }>;
 
+export type ServicesPage = {
+  _id: string;
+  _type: "servicesPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description: string;
+  services: Array<{
+    title: string;
+    description: string;
+    icon?: "flag" | "building" | "box" | "arrow" | "settings" | "tools" | "eye" | "shield";
+    features: Array<string>;
+    _key: string;
+  }>;
+  callToAction?: {
+    title: string;
+    description: string;
+    buttonText?: string;
+    buttonLink: string;
+  };
+};
+
+export type ContactPage = {
+  _id: string;
+  _type: "contactPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description: string;
+  contactInfo?: {
+    phone: string;
+    phoneHours?: string;
+    email: string;
+    emailResponse?: string;
+    address: string;
+    emergencyPhone: string;
+    emergencyHours?: string;
+  };
+  serviceAreas?: {
+    title: string;
+    description: string;
+    areas: Array<string>;
+  };
+  contactForm?: {
+    title: string;
+    serviceOptions?: Array<{
+      label: string;
+      value: string;
+      _key: string;
+    }>;
+    submitButtonText?: string;
+    privacyNotice?: string;
+  };
+};
+
+export type GalleryPage = {
+  _id: string;
+  _type: "galleryPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description: string;
+  categories?: Array<{
+    name: string;
+    slug: Slug;
+    _key: string;
+  }>;
+  images?: Array<{
+    image: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    title: string;
+    description: string;
+    category: "alle" | "jordarbejde" | "maskiner" | "transport" | "projekter";
+    alt: string;
+    featured?: boolean;
+    _key: string;
+  }>;
+  loadMoreText?: string;
+  callToAction?: {
+    title: string;
+    description: string;
+    primaryButtonText?: string;
+    secondaryButtonText?: string;
+    phoneNumber: string;
+  };
+};
+
 export type Homepage = {
   _id: string;
   _type: "homepage";
@@ -120,7 +220,7 @@ export type Homepage = {
   hero?: {
     title: string;
     subtitle: string;
-    backgroundImage?: {
+    backgroundImage: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -570,7 +670,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = CallToAction | Link | InfoSection | BlockContent | Homepage | Settings | Page | Post | Person | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = CallToAction | Link | InfoSection | BlockContent | ServicesPage | ContactPage | GalleryPage | Homepage | Settings | Page | Post | Person | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -636,7 +736,7 @@ export type HomepageQueryResult = {
         url: string | null;
       } | null;
       alt: string;
-    } | null;
+    };
     primaryButtonText: string | null;
     secondaryButtonText: string | null;
   } | null;
@@ -921,6 +1021,99 @@ export type PostPagesSlugsResult = Array<{
 export type PagesSlugsResult = Array<{
   slug: string;
 }>;
+// Variable: galleryPageQuery
+// Query: *[_type == "galleryPage"][0]{  title,  description,  categories[]{    name,    slug  },  images[]{    image{      asset->{        _id,        url,        metadata{          dimensions,          blurhash,          lqip        }      },      alt    },    title,    description,    category,    alt,    featured  },  loadMoreText,  callToAction{    title,    description,    primaryButtonText,    secondaryButtonText,    phoneNumber  }}
+export type GalleryPageQueryResult = {
+  title: string;
+  description: string;
+  categories: Array<{
+    name: string;
+    slug: Slug;
+  }> | null;
+  images: Array<{
+    image: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+          blurhash: null;
+          lqip: string | null;
+        } | null;
+      } | null;
+      alt: null;
+    };
+    title: string;
+    description: string;
+    category: "alle" | "jordarbejde" | "maskiner" | "projekter" | "transport";
+    alt: string;
+    featured: boolean | null;
+  }> | null;
+  loadMoreText: string | null;
+  callToAction: {
+    title: string;
+    description: string;
+    primaryButtonText: string | null;
+    secondaryButtonText: string | null;
+    phoneNumber: string;
+  } | null;
+} | null;
+// Variable: contactPageQuery
+// Query: *[_type == "contactPage"][0]{  title,  description,  contactInfo{    phone,    phoneHours,    email,    emailResponse,    address,    emergencyPhone,    emergencyHours  },  serviceAreas{    title,    description,    areas[]  },  contactForm{    title,    serviceOptions[]{      label,      value    },    submitButtonText,    privacyNotice  }}
+export type ContactPageQueryResult = {
+  title: string;
+  description: string;
+  contactInfo: {
+    phone: string;
+    phoneHours: string | null;
+    email: string;
+    emailResponse: string | null;
+    address: string;
+    emergencyPhone: string;
+    emergencyHours: string | null;
+  } | null;
+  serviceAreas: {
+    title: string;
+    description: string;
+    areas: Array<string>;
+  } | null;
+  contactForm: {
+    title: string;
+    serviceOptions: Array<{
+      label: string;
+      value: string;
+    }> | null;
+    submitButtonText: string | null;
+    privacyNotice: string | null;
+  } | null;
+} | null;
+// Variable: servicesPageQuery
+// Query: *[_type == "servicesPage"][0]{  title,  description,  services[]{    title,    description,    icon,    features[]  },  callToAction{    title,    description,    buttonText,    buttonLink  }}
+export type ServicesPageQueryResult = {
+  title: string;
+  description: string;
+  services: Array<{
+    title: string;
+    description: string;
+    icon: "arrow" | "box" | "building" | "eye" | "flag" | "settings" | "shield" | "tools" | null;
+    features: Array<string>;
+  }>;
+  callToAction: {
+    title: string;
+    description: string;
+    buttonText: string | null;
+    buttonLink: string;
+  } | null;
+} | null;
+// Variable: aboutPageQuery
+// Query: *[_type == "aboutPage"][0]{  title,  description,  companyDescription,  values[]{    title,    description,    icon  },  contactInfo{    phone,    email,    address  }}
+export type AboutPageQueryResult = null;
+// Variable: competenciesPageQuery
+// Query: *[_type == "competenciesPage"][0]{  title,  description,  coreCompetencies{    sectionTitle,    competencies[]{      title,      description,      icon    }  },  technicalExpertise{    sectionTitle,    equipment{      title,      items[]    },    methods{      title,      items[]    }  },  experienceStats{    sectionTitle,    stats[]{      number,      title,      description    }  },  materialsSection{    sectionTitle,    materials{      title,      items[]    },    capacity{      title,      items[]    }  }}
+export type CompetenciesPageQueryResult = null;
+// Variable: footerQuery
+// Query: *[_type == "footer"][0]{  title,  companySection{    title,    description  },  competenciesSection{    title,    competencies[]{      name    }  },  contactSection{    title,    phone,    email,    address  },  linksSection{    title,    links[]{      title,      url    }  },  copyright}
+export type FooterQueryResult = null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -935,5 +1128,11 @@ declare module "@sanity/client" {
     "\n  *[_type == \"post\" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": PostQueryResult;
     "\n  *[_type == \"post\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PostPagesSlugsResult;
     "\n  *[_type == \"page\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PagesSlugsResult;
+    "*[_type == \"galleryPage\"][0]{\n  title,\n  description,\n  categories[]{\n    name,\n    slug\n  },\n  images[]{\n    image{\n      asset->{\n        _id,\n        url,\n        metadata{\n          dimensions,\n          blurhash,\n          lqip\n        }\n      },\n      alt\n    },\n    title,\n    description,\n    category,\n    alt,\n    featured\n  },\n  loadMoreText,\n  callToAction{\n    title,\n    description,\n    primaryButtonText,\n    secondaryButtonText,\n    phoneNumber\n  }\n}": GalleryPageQueryResult;
+    "*[_type == \"contactPage\"][0]{\n  title,\n  description,\n  contactInfo{\n    phone,\n    phoneHours,\n    email,\n    emailResponse,\n    address,\n    emergencyPhone,\n    emergencyHours\n  },\n  serviceAreas{\n    title,\n    description,\n    areas[]\n  },\n  contactForm{\n    title,\n    serviceOptions[]{\n      label,\n      value\n    },\n    submitButtonText,\n    privacyNotice\n  }\n}": ContactPageQueryResult;
+    "*[_type == \"servicesPage\"][0]{\n  title,\n  description,\n  services[]{\n    title,\n    description,\n    icon,\n    features[]\n  },\n  callToAction{\n    title,\n    description,\n    buttonText,\n    buttonLink\n  }\n}": ServicesPageQueryResult;
+    "*[_type == \"aboutPage\"][0]{\n  title,\n  description,\n  companyDescription,\n  values[]{\n    title,\n    description,\n    icon\n  },\n  contactInfo{\n    phone,\n    email,\n    address\n  }\n}": AboutPageQueryResult;
+    "*[_type == \"competenciesPage\"][0]{\n  title,\n  description,\n  coreCompetencies{\n    sectionTitle,\n    competencies[]{\n      title,\n      description,\n      icon\n    }\n  },\n  technicalExpertise{\n    sectionTitle,\n    equipment{\n      title,\n      items[]\n    },\n    methods{\n      title,\n      items[]\n    }\n  },\n  experienceStats{\n    sectionTitle,\n    stats[]{\n      number,\n      title,\n      description\n    }\n  },\n  materialsSection{\n    sectionTitle,\n    materials{\n      title,\n      items[]\n    },\n    capacity{\n      title,\n      items[]\n    }\n  }\n}": CompetenciesPageQueryResult;
+    "*[_type == \"footer\"][0]{\n  title,\n  companySection{\n    title,\n    description\n  },\n  competenciesSection{\n    title,\n    competencies[]{\n      name\n    }\n  },\n  contactSection{\n    title,\n    phone,\n    email,\n    address\n  },\n  linksSection{\n    title,\n    links[]{\n      title,\n      url\n    }\n  },\n  copyright\n}": FooterQueryResult;
   }
 }

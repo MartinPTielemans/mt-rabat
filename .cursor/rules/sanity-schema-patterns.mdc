@@ -1,0 +1,97 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Sanity Schema Patterns and Management
+
+## Schema Organization
+- **Singletons**: [studio/src/schemaTypes/singletons/](mdc:studio/src/schemaTypes/singletons) - Single instance content types
+- **Documents**: [studio/src/schemaTypes/documents/](mdc:studio/src/schemaTypes/documents) - Multiple instance content types  
+- **Objects**: [studio/src/schemaTypes/objects/](mdc:studio/src/schemaTypes/objects) - Reusable field groups
+- **Index**: [studio/src/schemaTypes/index.ts](mdc:studio/src/schemaTypes/index.ts) - Schema registration
+
+## Schema Type Patterns
+
+### Singleton Pattern (One Instance Only)
+Used for unique pages like Homepage, Gallery, Services, Contact:
+```typescript
+// Example: [studio/src/schemaTypes/singletons/homepage.tsx](mdc:studio/src/schemaTypes/singletons/homepage.tsx)
+export const homepage = defineType({
+  name: 'homepage',
+  title: 'Homepage',
+  type: 'document',
+  // ... fields
+})
+```
+
+### Document Pattern (Multiple Instances)
+Used for general content like Pages, Posts, People:
+```typescript
+// Example: [studio/src/schemaTypes/documents/post.ts](mdc:studio/src/schemaTypes/documents/post.ts)
+export const post = defineType({
+  name: 'post',
+  title: 'Post',
+  type: 'document',
+  // ... fields with slug and preview
+})
+```
+
+### Object Pattern (Reusable Components)
+Used for field groups like Links, InfoSections:
+```typescript
+// Example: [studio/src/schemaTypes/objects/link.ts](mdc:studio/src/schemaTypes/objects/link.ts)
+export const link = defineType({
+  name: 'link',
+  title: 'Link',
+  type: 'object',
+  // ... fields
+})
+```
+
+## Studio Structure Configuration
+Configure document organization in [studio/src/structure/index.ts](mdc:studio/src/structure/index.ts):
+- Define singletons with specific document IDs
+- Disable types from appearing in main list via `DISABLED_TYPES`
+- Create custom navigation structure
+
+## Schema Evolution Rules
+1. **Never remove document types** that have content - this breaks references
+2. **Always run `npx sanity schema validate`** before deploying
+3. **Regenerate types** with `pnpm run typegen` after schema changes
+4. **Test in Studio** before pushing to production
+5. **Use migrations** for breaking changes to existing content
+
+## Link Object Pattern
+The link object supports three types:
+- **href**: Direct URL links
+- **page**: References to Page documents  
+- **post**: References to Post documents
+
+Link resolution handled in [frontend/sanity/lib/utils.ts](mdc:frontend/sanity/lib/utils.ts)
+
+## Danish Validation Messages
+Always provide Danish error messages for content editors:
+```typescript
+validation: (rule) => 
+  rule.required().error('Dette felt er påkrævet')
+```
+
+## Image Field Pattern
+Standard image field with alt text and validation:
+```typescript
+defineField({
+  name: 'image',
+  title: 'Billede',
+  type: 'image',
+  options: { hotspot: true },
+  fields: [
+    {
+      name: 'alt',
+      title: 'Alt tekst',
+      type: 'string',
+      description: 'Vigtigt for SEO og tilgængelighed',
+    }
+  ]
+})
+```

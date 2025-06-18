@@ -16,9 +16,8 @@ import {
   type DocumentLocation,
 } from 'sanity/presentation'
 import {assist} from '@sanity/assist'
-
 // Environment variables for project configuration
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'z3qj8fi1'
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'sbwzmaqo'
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
 // URL for preview functionality - supports both local and production
@@ -36,12 +35,20 @@ const homeLocation = {
 
 // resolveHref() is a convenience function that resolves the URL
 // path for different document types and used in the presentation tool.
-function resolveHref(documentType?: string, slug?: string): string | undefined {
+function resolveHref(documentType?: string): string | undefined {
   switch (documentType) {
-    case 'post':
-      return slug ? `/posts/${slug}` : undefined
-    case 'page':
-      return slug ? `/${slug}` : undefined
+    case 'galleryPage':
+      return '/galleri'
+    case 'servicesPage':
+      return '/ydelser'
+    case 'contactPage':
+      return '/kontakt'
+    case 'aboutPage':
+      return '/om-os'
+    case 'competenciesPage':
+      return '/kompetencer'
+    case 'homepage':
+      return '/'
     default:
       console.warn('Invalid document type:', documentType)
       return undefined
@@ -66,24 +73,33 @@ export default defineConfig({
         },
       },
       // Allow both local and production origins
-      allowOrigins: [
-        'http://localhost:3000',
-        'https://mt-rabat.vercel.app'
-      ],
+      allowOrigins: ['http://localhost:3000', 'https://mt-rabat.vercel.app'],
       resolve: {
         // The Main Document Resolver API provides a method of resolving a main document from a given route or route pattern. https://www.sanity.io/docs/presentation-resolver-api#57720a5678d9
         mainDocuments: defineDocuments([
           {
             route: '/',
-            filter: `_type == "homepage"`,
+            filter: `_type == "homepage" || _type == "footer"`,
           },
           {
-            route: '/:slug',
-            filter: `_type == "page" && slug.current == $slug || _id == $slug`,
+            route: '/galleri',
+            filter: `_type == "galleryPage" || _type == "footer"`,
           },
           {
-            route: '/posts/:slug',
-            filter: `_type == "post" && slug.current == $slug || _id == $slug`,
+            route: '/ydelser',
+            filter: `_type == "servicesPage" || _type == "footer"`,
+          },
+          {
+            route: '/kontakt',
+            filter: `_type == "contactPage" || _type == "footer"`,
+          },
+          {
+            route: '/om-os',
+            filter: `_type == "aboutPage" || _type == "footer"`,
+          },
+          {
+            route: '/kompetencer',
+            filter: `_type == "competenciesPage" || _type == "footer"`,
           },
         ]),
         // Locations Resolver API allows you to define where data is being used in your application. https://www.sanity.io/docs/presentation-resolver-api#8d8bca7bfcd7
@@ -98,37 +114,67 @@ export default defineConfig({
             message: 'This document is used on all pages',
             tone: 'positive',
           }),
-          page: defineLocations({
-            select: {
-              name: 'name',
-              slug: 'slug.current',
-            },
-            resolve: (doc) => ({
-              locations: [
-                {
-                  title: doc?.name || 'Untitled',
-                  href: resolveHref('page', doc?.slug)!,
-                },
-              ],
-            }),
+          footer: defineLocations({
+            locations: [
+              homeLocation,
+              { title: 'Galleri', href: '/galleri' },
+              { title: 'Ydelser', href: '/ydelser' },
+              { title: 'Kontakt', href: '/kontakt' },
+              { title: 'Om Os', href: '/om-os' },
+              { title: 'Kompetencer', href: '/kompetencer' },
+            ],
+            message: 'This document is used in the footer on all pages',
+            tone: 'positive',
           }),
-          post: defineLocations({
-            select: {
-              title: 'title',
-              slug: 'slug.current',
-            },
-            resolve: (doc) => ({
-              locations: [
-                {
-                  title: doc?.title || 'Untitled',
-                  href: resolveHref('post', doc?.slug)!,
-                },
-                {
-                  title: 'Home',
-                  href: '/',
-                } satisfies DocumentLocation,
-              ].filter(Boolean) as DocumentLocation[],
-            }),
+          galleryPage: defineLocations({
+            locations: [
+              {
+                title: 'Galleri Side',
+                href: '/galleri',
+              },
+            ],
+            message: 'This document is used on the gallery page',
+            tone: 'positive',
+          }),
+          servicesPage: defineLocations({
+            locations: [
+              {
+                title: 'Ydelser Side',
+                href: '/ydelser',
+              },
+            ],
+            message: 'This document is used on the services page',
+            tone: 'positive',
+          }),
+          contactPage: defineLocations({
+            locations: [
+              {
+                title: 'Kontakt Side',
+                href: '/kontakt',
+              },
+            ],
+            message: 'This document is used on the contact page',
+            tone: 'positive',
+          }),
+          aboutPage: defineLocations({
+            locations: [
+              {
+                title: 'Om Os Side',
+                href: '/om-os',
+              },
+            ],
+            message: 'This document is used on the about page',
+            tone: 'positive',
+          }),
+          competenciesPage: defineLocations({
+            locations: [
+              {
+                title: 'Kompetencer Side',
+                href: '/kompetencer',
+              },
+            ],
+            message: 'This document is used on the competencies page',
+            tone: 'positive',
           }),
         },
       },

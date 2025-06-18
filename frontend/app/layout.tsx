@@ -8,12 +8,13 @@ import { VisualEditing, toPlainText } from "next-sanity";
 import { Toaster } from "sonner";
 
 import DraftModeToast from "@/app/components/DraftModeToast";
-import Footer from "@/app/components/Footer";
+import { Footer } from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { settingsQuery } from "@/sanity/lib/queries";
+import { settingsQuery, footerQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+import { validateFooter, defaultFooterData } from "@/utils/contentValidation";
 import { handleError } from "./client-utils";
 
 /**
@@ -64,6 +65,15 @@ export default async function RootLayout({
 }) {
   const { isEnabled: isDraftMode } = await draftMode();
 
+  // Fetch footer data
+  const { data: footerData } = await sanityFetch({
+    query: footerQuery,
+    stega: false,
+  });
+
+  // Validate footer data or use fallback
+  const validatedFooterData = validateFooter(footerData) || defaultFooterData;
+
   return (
     <html lang="da" className={`${inter.variable} bg-white text-black`}>
       <body>
@@ -81,7 +91,7 @@ export default async function RootLayout({
           <SanityLive onError={handleError} />
           <Header />
           <main className="w-full">{children}</main>
-          <Footer />
+          <Footer data={validatedFooterData} />
         </div>
         <SpeedInsights />
       </body>

@@ -17,7 +17,7 @@ export const link = defineType({
       name: 'linkType',
       title: 'Link Type',
       type: 'string',
-      initialValue: 'url',
+      initialValue: 'href',
       options: {
         list: [
           {title: 'URL', value: 'href'},
@@ -33,7 +33,6 @@ export const link = defineType({
       type: 'url',
       hidden: ({parent}) => parent?.linkType !== 'href',
       validation: (Rule) =>
-        // Custom validation to ensure URL is provided if the link type is 'href'
         Rule.custom((value, context: any) => {
           if (context.parent?.linkType === 'href' && !value) {
             return 'URL is required when Link Type is URL'
@@ -48,7 +47,6 @@ export const link = defineType({
       to: [{type: 'page'}],
       hidden: ({parent}) => parent?.linkType !== 'page',
       validation: (Rule) =>
-        // Custom validation to ensure page reference is provided if the link type is 'page'
         Rule.custom((value, context: any) => {
           if (context.parent?.linkType === 'page' && !value) {
             return 'Page reference is required when Link Type is Page'
@@ -63,7 +61,6 @@ export const link = defineType({
       to: [{type: 'post'}],
       hidden: ({parent}) => parent?.linkType !== 'post',
       validation: (Rule) =>
-        // Custom validation to ensure post reference is provided if the link type is 'post'
         Rule.custom((value, context: any) => {
           if (context.parent?.linkType === 'post' && !value) {
             return 'Post reference is required when Link Type is Post'

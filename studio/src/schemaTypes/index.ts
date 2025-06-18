@@ -1,6 +1,12 @@
-import {person} from './documents/person'
+import {galleryPage} from './singletons/galleryPage'
+import {contactPage} from './singletons/contactPage'
+import {servicesPage} from './singletons/servicesPage'
+import {aboutPage} from './singletons/aboutPage'
+import {competenciesPage} from './singletons/competenciesPage'
+import {footer} from './singletons/footer'
 import {page} from './documents/page'
 import {post} from './documents/post'
+import {person} from './documents/person'
 import {callToAction} from './objects/callToAction'
 import {infoSection} from './objects/infoSection'
 import {settings} from './singletons/settings'
@@ -14,6 +20,12 @@ export const schemaTypes = [
   // Singletons
   settings,
   homepage,
+  galleryPage,
+  contactPage,
+  servicesPage,
+  aboutPage,
+  competenciesPage,
+  footer,
   // Documents
   page,
   post,

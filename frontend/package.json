@@ -29,7 +29,8 @@
     "sanity": "^3.91.0",
     "sonner": "^1.7.0",
     "styled-components": "^6.1.13",
-    "tailwindcss": "^4.1.8"
+    "tailwindcss": "^4.1.8",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@types/node": "^20.17.17",
