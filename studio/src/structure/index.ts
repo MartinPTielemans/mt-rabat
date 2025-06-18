@@ -1,4 +1,4 @@
-import {CogIcon, HomeIcon} from '@sanity/icons'
+import {CogIcon, HomeIcon, ImageIcon, UserIcon, DocumentIcon} from '@sanity/icons'
 import type {StructureBuilder, StructureResolver} from 'sanity/structure'
 import pluralize from 'pluralize-esm'
 
@@ -8,26 +8,36 @@ import pluralize from 'pluralize-esm'
  * Learn more: https://www.sanity.io/docs/structure-builder-introduction
  */
 
-const DISABLED_TYPES = ['settings', 'homepage', 'assist.instruction.context']
+const DISABLED_TYPES = ['settings', 'homepage', 'galleryPage', 'contactPage', 'servicesPage', 'aboutPage', 'competenciesPage', 'footer', 'assist.instruction.context']
+
+// Singleton pages configuration
+const singletonPages = [
+  { schemaType: 'homepage', title: 'Homepage', icon: HomeIcon, documentId: 'homepage' },
+  { schemaType: 'galleryPage', title: 'Galleri Side', icon: ImageIcon, documentId: 'galleryPage' },
+  { schemaType: 'servicesPage', title: 'Ydelser Side', icon: DocumentIcon, documentId: 'servicesPage' },
+  { schemaType: 'contactPage', title: 'Kontakt Side', icon: UserIcon, documentId: 'contactPage' },
+  { schemaType: 'aboutPage', title: 'Om Os Side', icon: DocumentIcon, documentId: 'aboutPage' },
+  { schemaType: 'competenciesPage', title: 'Kompetencer Side', icon: DocumentIcon, documentId: 'competenciesPage' },
+  { schemaType: 'footer', title: 'Footer', icon: DocumentIcon, documentId: 'footer' },
+  { schemaType: 'settings', title: 'Site Settings', icon: CogIcon, documentId: 'siteSettings' },
+] as const
 
 export const structure: StructureResolver = (S: StructureBuilder) =>
   S.list()
     .title('Website Content')
     .items([
-      // Homepage Singleton - Easy to edit homepage content with live preview
-      S.listItem()
-        .title('Homepage')
-        .child(S.document().schemaType('homepage').documentId('homepage'))
-        .icon(HomeIcon),
-      // Settings Singleton in order to view/edit the one particular document for Settings.  Learn more about Singletons: https://www.sanity.io/docs/create-a-link-to-a-single-edit-page-in-your-main-document-type-list
-      S.listItem()
-        .title('Site Settings')
-        .child(S.document().schemaType('settings').documentId('siteSettings'))
-        .icon(CogIcon),
+      // Singleton pages configuration
+      ...singletonPages.map(({schemaType, title, icon, documentId}) =>
+        S.listItem()
+          .title(title)
+          .child(S.document().schemaType(schemaType).documentId(documentId))
+          .icon(icon)
+      ),
+      
       // Divider
       S.divider(),
       ...S.documentTypeListItems()
-        // Remove the "assist.instruction.context", "settings", and "homepage" content from the list of content types
+        // Remove the singletons and system types from the list of content types
         .filter((listItem: any) => !DISABLED_TYPES.includes(listItem.getId()))
         // Pluralize the title of each document type.  This is not required but just an option to consider.
         .map((listItem) => {

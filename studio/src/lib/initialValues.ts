@@ -57,3 +57,37 @@ export const description = [
 ]
 
 export const ogImageTitle = 'A Next.js Blog with a Native Authoring Experience'
+
+// Footer initial values
+export const footerInitialValues = {
+  title: 'Footer indhold',
+  companySection: {
+    title: 'Om os',
+    description: 'Marcel Tielemans er en professionel leverandør af infrastrukturløsninger med fokus på bæredygtighed og høj kvalitet.',
+  },
+  competenciesSection: {
+    title: 'Kompetencer',
+    competencies: [
+      { name: 'Vejservice' },
+      { name: 'Traditionelle anlægsopgaver' },
+      { name: 'Store infrastrukturopgaver' },
+      { name: 'Asfalt' },
+    ],
+  },
+  contactSection: {
+    title: 'Kontakt',
+    phone: '+45 40 48 64 80',
+    email: 'm.t@live.dk',
+    address: 'Kollund Byvej 45\n7400 Herning',
+  },
+  linksSection: {
+    title: 'Links',
+    links: [
+      { title: 'Privatlivspolitik', url: '/privatlivspolitik' },
+      { title: 'Cookiepolitik', url: '/cookiepolitik' },
+      { title: 'Årsrapporter', url: '/aarsrapporter' },
+      { title: 'Job og karriere', url: '/job-karriere' },
+    ],
+  },
+  copyright: 'Marcel Tielemans',
+}

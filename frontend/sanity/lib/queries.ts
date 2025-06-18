@@ -146,3 +146,177 @@ export const pagesSlugs = defineQuery(`
   *[_type == "page" && defined(slug.current)]
   {"slug": slug.current}
 `);
+
+// Gallery page query
+export const galleryPageQuery = defineQuery(`*[_type == "galleryPage"][0]{
+  title,
+  description,
+  categories[]{
+    name,
+    slug
+  },
+  images[]{
+    image{
+      asset->{
+        _id,
+        url,
+        metadata{
+          dimensions,
+          blurhash,
+          lqip
+        }
+      },
+      alt
+    },
+    title,
+    description,
+    category,
+    alt,
+    featured
+  },
+  loadMoreText,
+  callToAction{
+    title,
+    description,
+    primaryButtonText,
+    secondaryButtonText,
+    phoneNumber
+  }
+}`);
+
+// Contact page query
+export const contactPageQuery = defineQuery(`*[_type == "contactPage"][0]{
+  title,
+  description,
+  contactInfo{
+    phone,
+    phoneHours,
+    email,
+    emailResponse,
+    address,
+    emergencyPhone,
+    emergencyHours
+  },
+  serviceAreas{
+    title,
+    description,
+    areas[]
+  },
+  contactForm{
+    title,
+    serviceOptions[]{
+      label,
+      value
+    },
+    submitButtonText,
+    privacyNotice
+  }
+}`);
+
+// Services page query
+export const servicesPageQuery = defineQuery(`*[_type == "servicesPage"][0]{
+  title,
+  description,
+  services[]{
+    title,
+    description,
+    icon,
+    features[]
+  },
+  callToAction{
+    title,
+    description,
+    buttonText,
+    buttonLink
+  }
+}`);
+
+// About page query
+export const aboutPageQuery = defineQuery(`*[_type == "aboutPage"][0]{
+  title,
+  description,
+  companyDescription,
+  values[]{
+    title,
+    description,
+    icon
+  },
+  contactInfo{
+    phone,
+    email,
+    address
+  }
+}`);
+
+// Competencies page query
+export const competenciesPageQuery = defineQuery(`*[_type == "competenciesPage"][0]{
+  title,
+  description,
+  coreCompetencies{
+    sectionTitle,
+    competencies[]{
+      title,
+      description,
+      icon
+    }
+  },
+  technicalExpertise{
+    sectionTitle,
+    equipment{
+      title,
+      items[]
+    },
+    methods{
+      title,
+      items[]
+    }
+  },
+  experienceStats{
+    sectionTitle,
+    stats[]{
+      number,
+      title,
+      description
+    }
+  },
+  materialsSection{
+    sectionTitle,
+    materials{
+      title,
+      items[]
+    },
+    capacity{
+      title,
+      items[]
+    }
+  }
+}`);
+
+// Footer query
+export const footerQuery = defineQuery(`*[_type == "footer"][0]{
+  title,
+  companySection{
+    title,
+    description
+  },
+  competenciesSection{
+    title,
+    competencies[]{
+      name
+    }
+  },
+  contactSection{
+    title,
+    phone,
+    email,
+    address
+  },
+  linksSection{
+    title,
+    links[]{
+      title,
+      url
+    }
+  },
+  copyright
+}`);

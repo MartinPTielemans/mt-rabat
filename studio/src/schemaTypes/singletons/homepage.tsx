@@ -18,14 +18,27 @@ export const homepage = defineType({
           title: 'Hero Title',
           type: 'string',
           initialValue: 'Rabatbiler sikrer vejenes holdbarhed',
-          validation: (rule) => rule.required(),
+          validation: (rule) => 
+            rule
+              .required()
+              .error('Titel er påkrævet')
+              .max(1000)
+              .warning('Titler bør være under 1000 tegn for bedre SEO'),
+          description: 'Hovedtitlen for hjemmesiden. Vigtig for SEO.',
         }),
         defineField({
           name: 'subtitle',
           title: 'Hero Subtitle',
           type: 'text',
+          rows: 3,
           initialValue: 'Marcel Tielemans\' rabatbiler vedligeholder rabatterne og sikrer, at afvandingen fra vejen kan løbe væk, så vandet ikke bliver liggende på vejen. Alt sker i én arbejdsgang.',
-          validation: (rule) => rule.required(),
+          validation: (rule) => 
+            rule
+              .required()
+              .error('Undertitel er påkrævet')
+              .max(2000)
+              .warning('Undertitler bør være under 2000 tegn for bedre læsbarhed'),
+          description: 'Beskrivende tekst under hovedtitlen.',
         }),
         defineField({
           name: 'backgroundImage',
@@ -33,15 +46,29 @@ export const homepage = defineType({
           type: 'image',
           options: {
             hotspot: true,
+            metadata: ['blurhash', 'lqip', 'palette'],
           },
+          validation: (rule) => 
+            rule
+              .required()
+              .error('Baggrundsbillede er påkrævet'),
           fields: [
             defineField({
               name: 'alt',
-              title: 'Alternative text',
+              title: 'Alternativ tekst (dansk)',
               type: 'string',
-              validation: (rule) => rule.required(),
+              validation: (rule) => 
+                rule
+                  .required()
+                  .error('Alt-tekst er påkrævet for tilgængelighed')
+                  .min(10)
+                  .warning('Alt-tekst bør være beskrivende (mindst 10 tegn)')
+                  .max(100)
+                  .warning('Alt-tekst bør være under 100 tegn'),
+              description: 'Beskrivelse af billedet for skærmlæsere og SEO. Skriv på dansk.',
             }),
           ],
+          description: 'Baggrundsbillede for hero-sektionen. Anbefalet størrelse: 1920x800px.',
         }),
         defineField({
           name: 'primaryButtonText',
@@ -89,13 +116,28 @@ export const homepage = defineType({
                   name: 'title',
                   title: 'Feature Title',
                   type: 'string',
-                  validation: (rule) => rule.required(),
+                  validation: (rule) => 
+                    rule
+                      .required()
+                      .error('Titel er påkrævet')
+                      .max(60)
+                      .warning('Titler bør være under 60 tegn for bedre layout'),
+                  description: 'Kort og beskrivende titel for funktionen.',
                 }),
                 defineField({
                   name: 'description',
                   title: 'Feature Description',
                   type: 'text',
-                  validation: (rule) => rule.required(),
+                  rows: 4,
+                  validation: (rule) => 
+                    rule
+                      .required()
+                      .error('Beskrivelse er påkrævet')
+                      .min(50)
+                      .warning('Beskrivelser bør være mindst 50 tegn for god information')
+                      .max(300)
+                      .warning('Beskrivelser bør være under 300 tegn for bedre læsbarhed'),
+                  description: 'Detaljeret beskrivelse af funktionen på dansk.',
                 }),
                 defineField({
                   name: 'icon',
