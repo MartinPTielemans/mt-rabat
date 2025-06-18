@@ -10,57 +10,29 @@ import pluralize from 'pluralize-esm'
 
 const DISABLED_TYPES = ['settings', 'homepage', 'galleryPage', 'contactPage', 'servicesPage', 'aboutPage', 'competenciesPage', 'footer', 'assist.instruction.context']
 
+// Singleton pages configuration
+const singletonPages = [
+  { schemaType: 'homepage', title: 'Homepage', icon: HomeIcon, documentId: 'homepage' },
+  { schemaType: 'galleryPage', title: 'Galleri Side', icon: ImageIcon, documentId: 'galleryPage' },
+  { schemaType: 'servicesPage', title: 'Ydelser Side', icon: DocumentIcon, documentId: 'servicesPage' },
+  { schemaType: 'contactPage', title: 'Kontakt Side', icon: UserIcon, documentId: 'contactPage' },
+  { schemaType: 'aboutPage', title: 'Om Os Side', icon: DocumentIcon, documentId: 'aboutPage' },
+  { schemaType: 'competenciesPage', title: 'Kompetencer Side', icon: DocumentIcon, documentId: 'competenciesPage' },
+  { schemaType: 'footer', title: 'Footer', icon: DocumentIcon, documentId: 'footer' },
+  { schemaType: 'settings', title: 'Site Settings', icon: CogIcon, documentId: 'siteSettings' },
+] as const
+
 export const structure: StructureResolver = (S: StructureBuilder) =>
   S.list()
     .title('Website Content')
     .items([
-      // Homepage Singleton - Easy to edit homepage content with live preview
-      S.listItem()
-        .title('Homepage')
-        .child(S.document().schemaType('homepage').documentId('homepage'))
-        .icon(HomeIcon),
-      
-      // Gallery Page Singleton
-      S.listItem()
-        .title('Galleri Side')
-        .child(S.document().schemaType('galleryPage').documentId('galleryPage'))
-        .icon(ImageIcon),
-      
-      // Services Page Singleton
-      S.listItem()
-        .title('Ydelser Side')
-        .child(S.document().schemaType('servicesPage').documentId('servicesPage'))
-        .icon(DocumentIcon),
-      
-      // Contact Page Singleton
-      S.listItem()
-        .title('Kontakt Side')
-        .child(S.document().schemaType('contactPage').documentId('contactPage'))
-        .icon(UserIcon),
-      
-      // About Page Singleton
-      S.listItem()
-        .title('Om Os Side')
-        .child(S.document().schemaType('aboutPage').documentId('aboutPage'))
-        .icon(DocumentIcon),
-      
-      // Competencies Page Singleton
-      S.listItem()
-        .title('Kompetencer Side')
-        .child(S.document().schemaType('competenciesPage').documentId('competenciesPage'))
-        .icon(DocumentIcon),
-      
-      // Footer Singleton
-      S.listItem()
-        .title('Footer')
-        .child(S.document().schemaType('footer').documentId('footer'))
-        .icon(DocumentIcon),
-      
-      // Settings Singleton in order to view/edit the one particular document for Settings.  Learn more about Singletons: https://www.sanity.io/docs/create-a-link-to-a-single-edit-page-in-your-main-document-type-list
-      S.listItem()
-        .title('Site Settings')
-        .child(S.document().schemaType('settings').documentId('siteSettings'))
-        .icon(CogIcon),
+      // Singleton pages configuration
+      ...singletonPages.map(({schemaType, title, icon, documentId}) =>
+        S.listItem()
+          .title(title)
+          .child(S.document().schemaType(schemaType).documentId(documentId))
+          .icon(icon)
+      ),
       
       // Divider
       S.divider(),

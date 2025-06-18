@@ -12,6 +12,7 @@ import { Footer } from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { safeSanityFetch } from "@/sanity/lib/safeDataFetching";
 import { settingsQuery, footerQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 import { validateFooter, defaultFooterData } from "@/utils/contentValidation";
@@ -65,14 +66,15 @@ export default async function RootLayout({
 }) {
   const { isEnabled: isDraftMode } = await draftMode();
 
-  // Fetch footer data
-  const { data: footerData } = await sanityFetch({
-    query: footerQuery,
-    stega: false,
-  });
-
-  // Validate footer data or use fallback
-  const validatedFooterData = validateFooter(footerData) || defaultFooterData;
+  // Fetch footer data with safe validation
+  const { data: footerData } = await safeSanityFetch(
+    footerQuery,
+    validateFooter,
+    defaultFooterData
+  );
+  
+  // Ensure we always have valid footer data
+  const validatedFooterData = footerData || defaultFooterData;
 
   return (
     <html lang="da" className={`${inter.variable} bg-white text-black`}>

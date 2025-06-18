@@ -35,7 +35,7 @@ export const link = defineType({
       validation: (Rule) =>
         Rule.custom((value, context: any) => {
           if (context.parent?.linkType === 'href' && !value) {
-            return 'URL is required when Link Type is URL'
+            return 'URL is required when Link Type is href'
           }
           return true
         }),
