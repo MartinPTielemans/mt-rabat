@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 
-import { AllPosts } from "@/app/components/Posts";
+
 import { IconComponent } from "@/app/components/IconComponent";
 import { ErrorBoundary, CMSErrorFallback, HeroSkeleton, ContentSkeleton } from "@/app/components/ErrorBoundary";
 import { homepageQuery } from "@/sanity/lib/queries";
@@ -49,8 +49,7 @@ export default async function Page() {
     hero,
     mainContent,
     capabilities,
-    contactSection,
-    recentProjects
+    contactSection
   } = homepage;
 
   // Fallback values if Sanity data is not available
@@ -65,7 +64,7 @@ export default async function Page() {
           style={{
             backgroundImage: `url("${hero?.backgroundImage?.asset?.url || defaultBackgroundImage}")`,
             aspectRatio: '162/35',
-            minHeight: '60vh',
+            minHeight: '70vh',
           }}
         >
           <div className="absolute inset-0 bg-black/45" />
@@ -215,41 +214,7 @@ export default async function Page() {
         </div>
       </div>
 
-      {/* Recent Projects Section */}
-      <div className="border-t border-gray-100 bg-white">
-        <div className="container">
-          <aside className="py-12 sm:py-20">
-            <ErrorBoundary fallback={CMSErrorFallback} context="recent-projects-header">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                  {recentProjects?.title}
-                </h2>
-                <p className="text-gray-600 max-w-2xl mx-auto">
-                  {recentProjects?.description}
-                </p>
-              </div>
-            </ErrorBoundary>
-            
-            <ErrorBoundary fallback={CMSErrorFallback} context="recent-projects-content">
-              <Suspense fallback={<ContentSkeleton lines={4} />}>
-                {await AllPosts()}
-              </Suspense>
-            </ErrorBoundary>
-            
-            <ErrorBoundary fallback={CMSErrorFallback} context="recent-projects-footer">
-              <div className="text-center mt-8">
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold"
-                >
-                  {recentProjects?.viewAllText}
-                  <IconComponent name="arrow-right" className="w-4 h-4 ml-2 text-blue-600" />
-                </Link>
-              </div>
-            </ErrorBoundary>
-          </aside>
-        </div>
-      </div>
+      
     </>
   );
 }

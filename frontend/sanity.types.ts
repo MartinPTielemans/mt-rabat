@@ -725,7 +725,7 @@ export type SettingsQueryResult = {
   } | null;
 } | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0]{  hero{    title,    subtitle,    backgroundImage{      asset->{        _id,        url      },      alt    },    primaryButtonText,    secondaryButtonText  },  mainContent{    title,    description,    features[]{      title,      description,      icon    }  },  capabilities{    title,    description,    leftColumn{      title,      content    },    rightColumn{      title,      content    }  },  contactSection{    title,    description,    buttonText  },  recentProjects{    title,    description,    viewAllText  }}
+// Query: *[_type == "homepage"][0]{  hero{    title,    subtitle,    backgroundImage{      asset->{        _id,        url      },      alt    },    primaryButtonText,    secondaryButtonText  },  mainContent{    title,    description,    features[]{      title,      description,      icon    }  },  capabilities{    title,    description,    leftColumn{      title,      content    },    rightColumn{      title,      content    }  },  contactSection{    title,    description,    buttonText  },  }
 export type HomepageQueryResult = {
   hero: {
     title: string;
@@ -799,11 +799,6 @@ export type HomepageQueryResult = {
     title: string;
     description: string;
     buttonText: string | null;
-  } | null;
-  recentProjects: {
-    title: string;
-    description: string | null;
-    viewAllText: string | null;
   } | null;
 } | null;
 // Variable: getPageQuery
@@ -1120,7 +1115,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]{\n  title,\n  description,\n  ogImage\n}": SettingsQueryResult;
-    "*[_type == \"homepage\"][0]{\n  hero{\n    title,\n    subtitle,\n    backgroundImage{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    primaryButtonText,\n    secondaryButtonText\n  },\n  mainContent{\n    title,\n    description,\n    features[]{\n      title,\n      description,\n      icon\n    }\n  },\n  capabilities{\n    title,\n    description,\n    leftColumn{\n      title,\n      content\n    },\n    rightColumn{\n      title,\n      content\n    }\n  },\n  contactSection{\n    title,\n    description,\n    buttonText\n  },\n  recentProjects{\n    title,\n    description,\n    viewAllText\n  }\n}": HomepageQueryResult;
+    "*[_type == \"homepage\"][0]{\n  hero{\n    title,\n    subtitle,\n    backgroundImage{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    primaryButtonText,\n    secondaryButtonText\n  },\n  mainContent{\n    title,\n    description,\n    features[]{\n      title,\n      description,\n      icon\n    }\n  },\n  capabilities{\n    title,\n    description,\n    leftColumn{\n      title,\n      content\n    },\n    rightColumn{\n      title,\n      content\n    }\n  },\n  contactSection{\n    title,\n    description,\n    buttonText\n  },\n  \n}": HomepageQueryResult;
     "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    \"pageBuilder\": pageBuilder[]{\n      ...,\n      _type == \"callToAction\" => {\n        \n  link {\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n      }\n,\n      },\n      _type == \"infoSection\" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n": GetPageQueryResult;
     "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;

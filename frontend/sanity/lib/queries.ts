@@ -46,11 +46,7 @@ export const homepageQuery = defineQuery(`*[_type == "homepage"][0]{
     description,
     buttonText
   },
-  recentProjects{
-    title,
-    description,
-    viewAllText
-  }
+  
 }`);
 
 const postFields = /* groq */ `

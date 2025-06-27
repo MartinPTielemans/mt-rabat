@@ -506,7 +506,7 @@ export const footerSchema = z.object({
   title: z.string().min(1, danishMessages.required),
   companySection: z.object({
     title: z.string().min(1, danishMessages.required),
-    description: z.string().min(1, danishMessages.required).max(200, danishMessages.maxLength(200)),
+    description: z.string().min(1, danishMessages.required)
   }).optional(),
   competenciesSection: z.object({
     title: z.string().min(1, danishMessages.required),

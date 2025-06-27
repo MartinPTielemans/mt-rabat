@@ -5,7 +5,7 @@ import {aboutPage} from './singletons/aboutPage'
 import {competenciesPage} from './singletons/competenciesPage'
 import {footer} from './singletons/footer'
 import {page} from './documents/page'
-import {post} from './documents/post'
+
 import {person} from './documents/person'
 import {callToAction} from './objects/callToAction'
 import {infoSection} from './objects/infoSection'
@@ -28,7 +28,7 @@ export const schemaTypes = [
   footer,
   // Documents
   page,
-  post,
+  
   person,
   // Objects
   blockContent,
