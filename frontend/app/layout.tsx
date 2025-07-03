@@ -8,14 +8,14 @@ import { VisualEditing, toPlainText } from "next-sanity";
 import { Toaster } from "sonner";
 
 import DraftModeToast from "@/app/components/DraftModeToast";
-import { Footer } from "@/app/components/Footer";
-import Header from "@/app/components/Header";
+// import { Footer } from "@/app/components/Footer";
+// import Header from "@/app/components/Header";
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { safeSanityFetch } from "@/sanity/lib/safeDataFetching";
-import { settingsQuery, footerQuery } from "@/sanity/lib/queries";
+// import { safeSanityFetch } from "@/sanity/lib/safeDataFetching";
+import { settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
-import { validateFooter, defaultFooterData } from "@/utils/contentValidation";
+// import { validateFooter, defaultFooterData } from "@/utils/contentValidation";
 import { handleError } from "./client-utils";
 
 /**
@@ -66,15 +66,7 @@ export default async function RootLayout({
 }) {
   const { isEnabled: isDraftMode } = await draftMode();
 
-  // Fetch footer data with safe validation
-  const { data: footerData } = await safeSanityFetch(
-    footerQuery,
-    validateFooter,
-    defaultFooterData
-  );
-  
-  // Ensure we always have valid footer data
-  const validatedFooterData = footerData || defaultFooterData;
+  // Removed footer data fetching since navigation is disabled
 
   return (
     <html lang="da" className={`${inter.variable} bg-white text-black`}>
@@ -91,9 +83,9 @@ export default async function RootLayout({
           )}
           {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
           <SanityLive onError={handleError} />
-          <Header />
-          <main className="w-full pt-24">{children}</main>
-          <Footer data={validatedFooterData} />
+          {/* Removed Header component - site is under construction */}
+          <main className="w-full">{children}</main>
+          {/* Removed Footer component - site is under construction */}
         </div>
         <SpeedInsights />
       </body>
