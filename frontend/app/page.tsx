@@ -52,14 +52,14 @@ export default function Page() {
                 <li>• Rabatfræsning</li>
                 <li>• Vejvedligeholdelse</li>
                 <li>• Afvandingsarbejde</li>
+                <li>• Jordarbejde</li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold text-gray-700 mb-2">Kontakt:</h3>
               <div className="text-gray-600 space-y-1">
-                <p>📞 Ring for mere information</p>
-                <p>📧 Send en besked</p>
-                <p>📍 Dækker hele regionen</p>
+                <p>📞 <span className="font-medium">40 48 64 80</span></p>
+                <p>📧 <span className="font-medium">marcel@mtrabat.dk</span></p>
               </div>
             </div>
           </div>
