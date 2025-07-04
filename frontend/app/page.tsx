@@ -52,7 +52,6 @@ export default function Page() {
                 <li>• Rabatfræsning</li>
                 <li>• Vejvedligeholdelse</li>
                 <li>• Afvandingsarbejde</li>
-                <li>• Jordarbejde</li>
               </ul>
             </div>
             <div>
