@@ -49,11 +49,11 @@ export default function Page() {
             <div>
               <h3 className="font-semibold text-gray-700 mb-2">Specialiseret i:</h3>
               <ul className="text-gray-600 space-y-1">
-                <li>• Rabat vedligeholdt</li>
-                <li>• Rabat fræsning</li>
-                <li>• Afvanding</li>
-                <li>• Kantsikring</li>
-                <li>• Rådgivning</li>
+                <li>Rabat vedligeholdt</li>
+                <li>Rabat fræsning</li>
+                <li>Afvanding</li>
+                <li>Kantsikring</li>
+                <li>Rådgivning</li>
               </ul>
             </div>
             <div>
