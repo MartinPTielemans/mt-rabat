@@ -28,7 +28,7 @@ export default function Page() {
           </p>
         </div>
 
-        {/* Company Image */}
+        {/* Company Image  */}
         <div className="mb-12 rounded-lg overflow-hidden shadow-2xl">
           <Image
             src="/images/hero-rabatbil.jpg"
