@@ -8,7 +8,7 @@ export default function Page() {
         {/* Company Logo */}
         <div className="mb-12">
           <Image
-            src="/logo/Mt Rabat.png"
+            src="/logo/MT Rabat.png"
             alt="Mt Rabat Logo"
             width={300}
             height={200}
