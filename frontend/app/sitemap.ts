@@ -8,15 +8,16 @@ import { headers } from "next/headers";
  * Be sure to update the `changeFrequency` and `priority` values to match your application's content.
  */
 
+const domain = "https://www.mads-thines.dk";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allPostsAndPages = await sanityFetch({
     query: sitemapData,
   });
   const headersList = await headers();
   const sitemap: MetadataRoute.Sitemap = [];
-  const domain: String = headersList.get("host") as string;
   sitemap.push({
-    url: domain as string,
+    url: domain,
     lastModified: new Date(),
     priority: 1,
     changeFrequency: "monthly",

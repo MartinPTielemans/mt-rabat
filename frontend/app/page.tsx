@@ -1,4 +1,10 @@
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Forside | MT Rabat",
+  description: "Velkommen til MT Rabat. Vi er specialiserede i vedligeholdelse af rabatter, fræsning, afvanding og kantsikring.",
+};
 
 export default function Page() {
   return (

@@ -57,6 +57,13 @@ export async function generateMetadata(
     openGraph: {
       images: ogImage ? [ogImage, ...previousImages] : previousImages,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: post?.title || "",
+      description: post?.excerpt || "",
+      images: ogImage ? [ogImage, ...previousImages] : previousImages,
+    },
+    keywords: post?.title?.split(" "),
   } satisfies Metadata;
 }
 

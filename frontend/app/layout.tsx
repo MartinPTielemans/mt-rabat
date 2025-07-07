@@ -50,6 +50,15 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       images: ogImage ? [ogImage] : [],
     },
+    keywords: ["Rabat, Biler, Bilpleje, Keramisk Coating, Affedtning"],
+    authors: [{ name: "Marcel Tielemans" }],
+    themeColor: "#000000",
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: toPlainText(description),
+      images: ogImage ? [ogImage] : [],
+    },
   };
 }
 
