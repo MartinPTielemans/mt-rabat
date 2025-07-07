@@ -5,6 +5,7 @@ import { PortableText } from "@portabletext/react";
 
 import { IconComponent } from "@/app/components/IconComponent";
 import { ErrorBoundary, CMSErrorFallback, HeroSkeleton, ContentSkeleton } from "@/app/components/ErrorBoundary";
+import { ServiceShowcaseTabs } from "@/app/components/ServiceShowcaseTabs";
 import { homepageQuery } from "@/sanity/lib/queries";
 import { safeSanityFetch } from "@/sanity/lib/safeDataFetching";
 import { validateHomepage, defaultHomepageData, type ValidatedHomepage, type ValidatedFeature } from "@/utils/contentValidation";
@@ -49,7 +50,7 @@ export default async function Page() {
     hero,
     mainContent,
     capabilities,
-    contactSection
+    contactSection,
   } = homepage;
 
   // Fallback values if Sanity data is not available
@@ -194,6 +195,8 @@ export default async function Page() {
         </div>
       </div>
 
+      <ServiceShowcaseTabs />
+
       {/* Contact Section */}
       <div className="py-20 bg-blue-600 text-white">
         <div className="container">
@@ -214,7 +217,6 @@ export default async function Page() {
         </div>
       </div>
 
-      
     </>
   );
 }

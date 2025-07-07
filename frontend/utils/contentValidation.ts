@@ -74,14 +74,14 @@ export const capabilitiesSchema = z.object({
 
 // Contact section schema
 export const contactSectionSchema = z.object({
-  title: z.string().min(1, danishMessages.required),
-  description: z.string().min(1, danishMessages.required),
+  title: z.string().optional(),
+  description: z.string().optional(),
   buttonText: z.string().optional(),
 });
 
 // Recent projects schema
 export const recentProjectsSchema = z.object({
-  title: z.string().min(1, danishMessages.required),
+  title: z.string().optional(),
   description: z.string().optional(),
   viewAllText: z.string().optional(),
 });
