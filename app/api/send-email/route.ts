@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: 'Kontaktformular <onboarding@resend.dev>', // Brug din verificerede domain
+      from: 'Kontaktformular <kontakt@mtrabat.dk>',
       to: ['info@mtrabat.dk'],
       subject: `Ny kontaktforespørgsel fra ${fornavn} ${efternavn}`,
       text: `
