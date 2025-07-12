@@ -9,6 +9,19 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
     NEXT_PUBLIC_SANITY_STUDIO_URL: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://*.sanity.studio https://mt-stuido.sanity.studio",
+          },
+        ],
+      },
+    ]
+  },
 };
 
 export default nextConfig;
