@@ -17,7 +17,7 @@ import {
 } from 'sanity/presentation'
 import {assist} from '@sanity/assist'
 // Environment variables for project configuration
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'sbwzmaqo'
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'ktxnnege'
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
 // URL for preview functionality - supports both local and production
@@ -55,7 +55,7 @@ function resolveHref(documentType?: string): string | undefined {
 // Main Sanity configuration
 export default defineConfig({
   name: 'default',
-  title: 'Sanity + Next.js Starter Template',
+  title: 'MT Rabat CMS',
 
   projectId,
   dataset,
