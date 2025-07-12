@@ -1,0 +1,42 @@
+title: 'Galleri'
+description: 'Se eksempler på vores arbejde med vedligeholdelse af vejrabatter'
+navigation:
+  title: 'Galleri'
+
+categories:
+  - name: 'Alle'
+    slug: 'alle'
+  - name: 'Rabatfræsning'
+    slug: 'rabatfraesning'
+  - name: 'Kantforstærkning'
+    slug: 'kantforstaerkning'
+  - name: 'Afvanding'
+    slug: 'afvanding'
+
+images:
+  - title: 'Rabatfræsning på landevej'
+    description: 'Præcis fræsning sikrer optimal vandafledning'
+    category: 'rabatfraesning'
+    image: '/images/rabatfraesning/rabat-fraesning-efter.jpg'
+    featured: true
+    
+  - title: 'Kantforstærkning før og efter'
+    description: 'Stabilisering af vejkanter forlænger vejens levetid'
+    category: 'kantforstaerkning'
+    image: '/images/kantforstaerkning/kantforstaerkning-efter.jpg'
+    featured: true
+    
+  - title: 'Afvanding af grusvej'
+    description: 'Korrekt afvanding forebygger vandskader'
+    category: 'afvanding'
+    image: '/images/afvanding/afvanding-efter.jpg'
+    featured: true
+
+loadMoreText: 'Vis flere billeder'
+
+callToAction:
+  title: 'Har du brug for vores hjælp?'
+  description: 'Vi står klar til at hjælpe med vedligeholdelse af dine vejrabatter'
+  primaryButtonText: 'Kontakt os'
+  secondaryButtonText: 'Ring direkte'
+  phoneNumber: '+45 22 18 62 62'

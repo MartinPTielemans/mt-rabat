@@ -1,0 +1,68 @@
+title: 'Vores Kompetencer'
+description: 'Teknisk ekspertise og moderne udstyr til professionel vejvedligeholdelse'
+navigation:
+  title: 'Kompetencer'
+
+coreCompetencies:
+  sectionTitle: 'Kernekompetencer'
+  competencies:
+    - title: 'Rabatfræsning'
+      description: 'Specialiseret i præcis fræsning med optimal dybdestyring'
+      icon: 'cog'
+      
+    - title: 'Kantforstærkning'
+      description: 'Ekspertise i stabilisering og forstærkning af vejkanter'
+      icon: 'shield'
+      
+    - title: 'Vandafledning'
+      description: 'Optimering af afvandingssystemer for vejbaner'
+      icon: 'water'
+
+technicalExpertise:
+  sectionTitle: 'Teknisk Ekspertise'
+  equipment:
+    title: 'Specialudstyr'
+    items:
+      - 'Moderne rabatbiler med GPS-styring'
+      - 'Præcisionsfræsere med variabel dybde'
+      - 'Kompakteringsudstyr'
+      - 'Måleinstrumenter for kvalitetskontrol'
+      
+  methods:
+    title: 'Metoder'
+    items:
+      - 'Systematisk dybdemåling'
+      - 'Miljøvenlige arbejdsmetoder'
+      - 'Kvalitetssikring af alle processer'
+      - 'Dokumentation af udført arbejde'
+
+experienceStats:
+  sectionTitle: 'Erfaring i tal'
+  stats:
+    - number: '20+'
+      title: 'År i branchen'
+      description: 'Solid erfaring og ekspertise'
+      
+    - number: '1000+'
+      title: 'Projekter gennemført'
+      description: 'Succesfulde opgaver i hele Danmark'
+      
+    - number: '24/7'
+      title: 'Service'
+      description: 'Klar til akutte opgaver'
+
+materialsSection:
+  sectionTitle: 'Materialer og kapacitet'
+  materials:
+    title: 'Materialer'
+    items:
+      - 'Certificerede tilslagsmaterialer'
+      - 'Miljøgodkendte bindemidler'
+      - 'Kvalitetssikrede komponenter'
+      
+  capacity:
+    title: 'Kapacitet'
+    items:
+      - 'Store projekter'
+      - 'Akutte opgaver'
+      - 'Fleksible løsningstider'

@@ -1,10 +1,12 @@
 {
-  "name": "sanity-template-nextjs-clean",
-  "description": "Next.js + Sanity: A Powerful Website Starter with Real-time Visual Editing",
+  "name": "mt-rabat-monorepo",
+  "description": "MT Rabat website with Next.js + Sanity and Nuxt alternatives",
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
     "dev:next": "pnpm --filter frontend dev",
     "dev:studio": "pnpm --filter studio dev",
+    "dev:nuxt": "pnpm --filter nuxt dev",
+    "build:nuxt": "pnpm --filter nuxt build",
     "import-sample-data": "cd studio && sanity dataset import sample-data.tar.gz --replace"
   },
   "keywords": [

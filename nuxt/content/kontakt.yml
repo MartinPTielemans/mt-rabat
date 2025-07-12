@@ -1,0 +1,38 @@
+title: 'Kontakt'
+description: 'Kontakt Marcel Tielemans for professionel vedligeholdelse af vejrabatter'
+navigation:
+  title: 'Kontakt'
+
+contactInfo:
+  phone: '+45 22 18 62 62'
+  phoneHours: 'Alle hverdage kl. 7:00 - 17:00'
+  email: 'info@mt-rabat.dk'
+  emailResponse: 'Vi svarer typisk inden for 24 timer'
+  address: 'Marcel Tielemans, Danmark'
+  emergencyPhone: '+45 22 18 62 62'
+  emergencyHours: 'Ring ved akutte behov'
+
+serviceAreas:
+  title: 'Vi dækker hele Danmark'
+  description: 'Marcel Tielemans kører i hele landet og tilbyder professionel service overalt'
+  areas:
+    - 'Nordjylland'
+    - 'Midtjylland'
+    - 'Syddanmark'
+    - 'Sjælland'
+    - 'Hovedstadsområdet'
+    - 'Bornholm'
+
+contactForm:
+  title: 'Send os en besked'
+  serviceOptions:
+    - label: 'Rabatfræsning'
+      value: 'rabatfraesning'
+    - label: 'Kantforstærkning'
+      value: 'kantforstaerkning'
+    - label: 'Afvanding'
+      value: 'afvanding'
+    - label: 'Andet'
+      value: 'andet'
+  submitButtonText: 'Send besked'
+  privacyNotice: 'Ved at sende denne formular accepterer du vores behandling af dine oplysninger.'

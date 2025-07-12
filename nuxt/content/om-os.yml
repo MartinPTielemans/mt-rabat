@@ -1,0 +1,27 @@
+title: 'Om Marcel Tielemans'
+description: 'Over 20 års erfaring med professionel vedligeholdelse af vejrabatter'
+navigation:
+  title: 'Om os'
+
+companyDescription: |
+  Marcel Tielemans har i over 20 år specialiseret sig i vedligeholdelse af vejrabatter i hele Danmark. 
+  Med moderne udstyr og dyb faglig ekspertise leverer vi pålidelige løsninger, der forlænger 
+  vejenes levetid og sikrer optimal vandafledning.
+
+values:
+  - title: 'Kvalitet'
+    description: 'Vi går aldrig på kompromis med kvaliteten af vores arbejde'
+    icon: 'star'
+    
+  - title: 'Pålidelighed'
+    description: 'Vi holder hvad vi lover og møder altid til tiden'
+    icon: 'shield-check'
+    
+  - title: 'Erfaring'
+    description: 'Over 20 års erfaring i branchen'
+    icon: 'academic-cap'
+
+contactInfo:
+  phone: '+45 22 18 62 62'
+  email: 'info@mt-rabat.dk'
+  address: 'Danmark'

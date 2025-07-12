@@ -1,0 +1,38 @@
+title: 'Vores Ydelser'
+description: 'Professionel vedligeholdelse af vejrabatter med moderne udstyr'
+navigation:
+  title: 'Ydelser'
+
+services:
+  - title: 'Rabatfræsning'
+    description: 'Præcis fræsning af vejrabatter sikrer optimal vandafledning og forlænger vejens levetid'
+    icon: 'excavator'
+    features:
+      - 'Præcis dybdestyring'
+      - 'Skånsom behandling af omgivelser'
+      - 'Effektiv vandafledning'
+      - 'Forebyggelse af vandskader'
+      
+  - title: 'Kantforstærkning'
+    description: 'Stabilisering og forstærkning af vejkanter for at forebygge erosion og sammenbrud'
+    icon: 'shield'
+    features:
+      - 'Stabilisering af løse kanter'
+      - 'Forebyggelse af erosion'
+      - 'Forlængelse af vejens levetid'
+      - 'Øget trafiksikkerhed'
+      
+  - title: 'Afvanding'
+    description: 'Sikring af korrekt vandafledning fra vejbanen for at undgå vandskader'
+    icon: 'water'
+    features:
+      - 'Etablering af fald'
+      - 'Rensning af grøfter'
+      - 'Optimering af vandflow'
+      - 'Forebyggelse af oversvømmelse'
+
+callToAction:
+  title: 'Få et uforpligtende tilbud'
+  description: 'Vi står klar til at hjælpe med alle dine behov for vedligeholdelse af vejrabatter'
+  buttonText: 'Kontakt os i dag'
+  buttonLink: '/kontakt'

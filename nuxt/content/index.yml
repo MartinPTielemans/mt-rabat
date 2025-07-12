@@ -1,0 +1,48 @@
+title: 'MT Rabat - Forside'
+description: 'Marcel Tielemans rabatbiler'
+navigation: false
+
+# Hero Section
+hero:
+  title: 'Rabatbiler sikrer vejenes holdbarhed'
+  subtitle: "Marcel Tielemans' rabatbiler vedligeholder rabatterne og sikrer, at afvandingen fra vejen kan løbe væk, så vandet ikke bliver liggende på vejen. Alt sker i én arbejdsgang."
+  backgroundImage: '/images/hero-bg.jpg'
+  primaryButtonText: 'Kontakt Marcel Tielemans'
+
+# Features Section  
+features:
+  - title: 'Professionel Service'
+    description: 'Vi leverer pålidelig og effektiv service med over 20 års erfaring i branchen.'
+    icon: 'settings'
+  - title: 'Moderne Udstyr'
+    description: 'Vores specialbyggede maskiner sikrer præcis og skånsom behandling af vejrabatter.'
+    icon: 'truck'
+  - title: 'Hurtig Respons'
+    description: 'Vi reagerer hurtigt på henvendelser og tilbyder fleksible løsninger efter behov.'
+    icon: 'clock'
+
+# Competencies Section
+competencies:
+  title: 'Vores Kompetencer'
+  columns:
+    - title: 'Rabatfræsning'
+      items:
+        - 'Præcis fræsning af vejrabatter'
+        - 'Optimal dybde for vandafledning'
+        - 'Skånsom behandling af eksisterende beplantning'
+    - title: 'Kantforstærkning'
+      items:
+        - 'Stabilisering af vejkanter'
+        - 'Forebyggelse af erosion'
+        - 'Forlængelse af vejens levetid'
+    - title: 'Afvanding'
+      items:
+        - 'Sikring af korrekt vandafledning'
+        - 'Forebyggelse af vandskader'
+        - 'Vedligeholdelse af grøfter'
+
+# Contact Section
+contactSection:
+  title: 'Kontakt os for et uforpligtende tilbud'
+  description: 'Vi står klar til at hjælpe med vedligeholdelse af dine vejrabatter'
+  buttonText: 'Ring nu'
