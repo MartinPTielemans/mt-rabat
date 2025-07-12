@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { useRef } from 'react';
 
 type ContactFormProps = {
   formData: {
@@ -14,6 +15,7 @@ type ContactFormProps = {
 
 export default function ContactForm({ formData }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ export default function ContactForm({ formData }: ContactFormProps) {
       console.log('Showing success toast');
       toast.success('Besked sendt succesfuldt!');
       console.log('Resetting form');
-      e.currentTarget.reset();
+      formRef.current?.reset();
     } catch (error) {
       console.log('Caught error:', error);
       toast.error('Fejl ved afsendelse af besked. Prøv igen.');
@@ -56,7 +58,7 @@ export default function ContactForm({ formData }: ContactFormProps) {
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
         {formData.title}
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} ref={formRef} className="space-y-6">
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="fornavn" className="block text-sm font-medium text-gray-700 mb-2">
