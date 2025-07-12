@@ -35,14 +35,16 @@ export default function ContactForm({ formData }: ContactFormProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-
+      console.log('Response status:', response.status, 'OK:', response.ok);
       if (!response.ok) {
         throw new Error('Fejl ved afsendelse');
       }
-
+      console.log('Showing success toast');
       toast.success('Besked sendt succesfuldt!');
+      console.log('Resetting form');
       e.currentTarget.reset();
     } catch (error) {
+      console.log('Caught error:', error);
       toast.error('Fejl ved afsendelse af besked. Prøv igen.');
     } finally {
       setIsSubmitting(false);

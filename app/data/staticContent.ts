@@ -239,12 +239,12 @@ export const contactPageData: StaticContactPage = {
   title: "Kontakt Os",
   description: "Har du brug for professionel hjælp til dit projekt? Kontakt os i dag for et uforpligtende tilbud.",
   contactInfo: {
-    phone: "+45 XX XX XX XX",
+    phone: "+45 40 48 64 80",
     phoneHours: "Mandag - Fredag: 07:00 - 16:00",
     email: "info@mtrabat.dk",
     emailResponse: "Vi svarer inden for 24 timer",
-    address: "Industrivej XX\nXXXX By\nDanmark",
-    emergencyPhone: "+45 XX XX XX XX",
+    address: "Kollund byvej 45\n7400 Herning\nDanmark",
+    emergencyPhone: "+45 40 48 64 80",
     emergencyHours: "24/7 nødservice"
   },
   serviceAreas: {
@@ -348,9 +348,9 @@ export const aboutPageData: StaticAboutPage = {
     }
   ],
   contactInfo: {
-    phone: "+45 XX XX XX XX",
+    phone: "+45 40 48 64 80",
     email: "info@mtrabat.dk",
-    address: "Industrivej XX\nXXXX By\nDanmark"
+    address: "Kollund byvej 45\n7400 Herning\nDanmark"
   }
 };
 
@@ -532,6 +532,6 @@ export const galleryPageData: StaticGalleryPage = {
     description: "Kontakt os for at høre mere om hvordan vi kan hjælpe dig",
     primaryButtonText: "Kontakt os",
     secondaryButtonText: "Ring nu",
-    phoneNumber: "+45 XX XX XX XX"
+    phoneNumber: "+45 40 48 64 80"
   }
 };
