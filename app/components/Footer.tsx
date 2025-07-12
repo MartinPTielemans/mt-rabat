@@ -69,11 +69,11 @@ export function Footer() {
                     Kompetencer
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="/galleri" className="text-gray-300 hover:text-white transition-colors">
                     Galleri
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link href="/om-os" className="text-gray-300 hover:text-white transition-colors">
                     Om os
