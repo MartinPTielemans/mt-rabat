@@ -22,10 +22,7 @@ const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
 // URL for preview functionality - supports both local and production
 const SANITY_STUDIO_PREVIEW_URL = 
-  process.env.SANITY_STUDIO_PREVIEW_URL || 
-  process.env.NODE_ENV === 'production' 
-    ? 'https://next.mtrabat.dk' // Points to next branch deployment
-    : 'http://localhost:3000'
+  process.env.SANITY_STUDIO_PREVIEW_URL || 'https://next.mtrabat.dk' // Points to next branch deployment
 
 // Define the home location for the presentation tool
 const homeLocation = {
@@ -75,8 +72,8 @@ export default defineConfig({
       // Allow both local and production origins
       allowOrigins: [
         'http://localhost:3000', 
-        'https://mt-rabat.vercel.app',
-        'https://next.mtrabat.dk'
+        'https://next.mtrabat.dk',
+        'https://mt-rabat.vercel.app'
       ],
       resolve: {
         // The Main Document Resolver API provides a method of resolving a main document from a given route or route pattern. https://www.sanity.io/docs/presentation-resolver-api#57720a5678d9
