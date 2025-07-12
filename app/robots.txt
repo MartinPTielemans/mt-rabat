@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://mtrabat.dk/sitemap.xml
+
+# Optimized for Danish search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

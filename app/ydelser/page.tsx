@@ -1,6 +1,39 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { IconComponent } from "@/app/components/IconComponent";
 import { servicesPageData } from "@/app/data/staticContent";
+
+export const metadata: Metadata = {
+  title: "Ydelser - Vejservice, Rabatfræsning og Anlægsarbejde",
+  description: "MT Rabat tilbyder professionelle ydelser inden for vejservice, traditionelle anlægsopgaver, store infrastrukturopgaver og asfaltarbejde. Kontakt os for et tilbud.",
+  keywords: [
+    "vejservice ydelser",
+    "rabatfræsning service",
+    "anlægsarbejde Danmark",
+    "infrastrukturopgaver",
+    "asfaltarbejde",
+    "vejbyggeri",
+    "BSM fræsning",
+    "afvandingssystemer",
+    "kantforstærkning"
+  ],
+  openGraph: {
+    title: "Ydelser - Komplet Vejservice og Anlægsarbejde",
+    description: "Professionelle løsninger inden for vejservice, anlægsarbejde og infrastruktur. Fra rabatfræsning til store vejbyggeriprojekter.",
+    url: "https://mtrabat.dk/ydelser",
+    images: [
+      {
+        url: "/images/rabatfræsning/rabat fræsning efter.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MT Rabat ydelser - professionel rabatfræsning og vejservice",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://mtrabat.dk/ydelser",
+  },
+};
 
 // Service card component
 function ServiceCard({ service }: { service: typeof servicesPageData.services[0] }) {

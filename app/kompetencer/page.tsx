@@ -1,5 +1,30 @@
+import type { Metadata } from "next";
 import { IconComponent } from "@/app/components/IconComponent";
 import { competenciesPageData } from "@/app/data/staticContent";
+
+export const metadata: Metadata = {
+  title: "Kompetencer - Vejservice Ekspertise og Teknisk Udstyr",
+  description: "MT Rabats kernekompetencer inden for vejservice, infrastruktur og projektledelse. 20+ års erfaring, moderne udstyr og specialiserede metoder til vejvedligeholdelse.",
+  keywords: [
+    "vejservice kompetencer",
+    "teknisk ekspertise",
+    "rabatbiler udstyr",
+    "vejservice erfaring",
+    "infrastruktur kompetencer",
+    "BSM fræsning ekspertise",
+    "vejservice statistik",
+    "moderne vejservice udstyr"
+  ],
+  openGraph: {
+    title: "Kompetencer - MT Rabats Vejservice Ekspertise",
+    description: "Specialiserede kompetencer inden for vejservice med 20+ års erfaring, 1000+ projekter og moderne teknisk udstyr til alle vejservice opgaver.",
+    url: "https://mtrabat.dk/kompetencer",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://mtrabat.dk/kompetencer",
+  },
+};
 
 export default function KompetencerPage() {
   const data = competenciesPageData;

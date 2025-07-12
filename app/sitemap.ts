@@ -1,44 +1,45 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://mt-rabat.vercel.app';
+  const baseUrl = 'https://mtrabat.dk';
+  const lastModified = new Date();
   
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'weekly',
-      priority: 1,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/ydelser`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/kontakt`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/kompetencer`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/galleri`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/om-os`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/kontakt`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
+      priority: 0.7,
     },
   ];
 }

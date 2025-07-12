@@ -1,7 +1,37 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { IconComponent } from "@/app/components/IconComponent";
 import { ServiceShowcaseTabs } from "@/app/components/ServiceShowcaseTabs";
 import { homepageData } from "@/app/data/staticContent";
+
+export const metadata: Metadata = {
+  title: "Forside - Professionel Vejservice og Rabatfræsning",
+  description: "MT Rabat tilbyder specialiseret vejservice med moderne rabatbiler. Vi vedligeholder vejrabatter, sikrer korrekt afvanding og forlænger vejenes levetid i hele Danmark.",
+  keywords: [
+    "vejservice forside",
+    "rabatbiler Danmark", 
+    "vejvedligeholdelse",
+    "afvanding veje",
+    "Marcel Tielemans",
+    "professionel vejservice"
+  ],
+  openGraph: {
+    title: "MT Rabat - Markedsledende Vejservice i Danmark",
+    description: "Specialiserede rabatbiler med avanceret udstyr til vejvedligeholdelse, rabatfræsning og afvandingssystemer. Erfaren vejservice i hele Danmark.",
+    url: "https://mtrabat.dk",
+    images: [
+      {
+        url: "/images/Kantfyld ramper E 45.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MT Rabat rabatfræsning på E45 - professionel vejservice",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://mtrabat.dk",
+  },
+};
 
 export default function Page() {
   // Use static data instead of CMS

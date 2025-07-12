@@ -1,4 +1,28 @@
+import type { Metadata } from "next";
 import { contactPageData } from '@/app/data/staticContent';
+
+export const metadata: Metadata = {
+  title: "Kontakt - MT Rabat Vejservice",
+  description: "Kontakt MT Rabat for professionel vejservice i Danmark. Vi servicerer København, Nordsjælland, Østsjælland og øvrige Sjælland. Ring for et uforpligtende tilbud.",
+  keywords: [
+    "kontakt vejservice",
+    "MT Rabat kontakt",
+    "vejservice København",
+    "vejservice Sjælland",
+    "rabatfræsning tilbud",
+    "Marcel Tielemans kontakt",
+    "vejservice Danmark kontakt"
+  ],
+  openGraph: {
+    title: "Kontakt MT Rabat - Professionel Vejservice",
+    description: "Har du brug for professionel vejservice? Kontakt MT Rabat i dag. Vi servicerer hele Sjælland med moderne udstyr og mange års erfaring.",
+    url: "https://mtrabat.dk/kontakt",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://mtrabat.dk/kontakt",
+  },
+};
 
 export default function KontaktPage() {
   const data = contactPageData;

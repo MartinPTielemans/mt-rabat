@@ -1,7 +1,39 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { IconComponent } from "@/app/components/IconComponent";
 import { galleryPageData } from "@/app/data/staticContent";
+
+export const metadata: Metadata = {
+  title: "Galleri - Før og Efter Billeder af Vejservice Projekter",
+  description: "Se MT Rabats vejservice projekter - før og efter billeder af rabatfræsning, afvanding og kantforstærkning. Professionelle resultater og kvalitetsarbejde.",
+  keywords: [
+    "vejservice galleri",
+    "før efter billeder",
+    "rabatfræsning billeder",
+    "afvanding projekter",
+    "kantforstærkning eksempler",
+    "vejservice resultater",
+    "MT Rabat arbejde",
+    "vejvedligeholdelse galleri"
+  ],
+  openGraph: {
+    title: "Galleri - Se MT Rabats Vejservice Projekter",
+    description: "Imponerende før og efter billeder af vores vejservice projekter. Fra rabatfræsning til afvanding - se kvaliteten af vores arbejde.",
+    url: "https://mtrabat.dk/galleri",
+    images: [
+      {
+        url: "/images/afvanding/afvanding efter.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MT Rabat galleri - professionel afvanding efter behandling",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://mtrabat.dk/galleri",
+  },
+};
 
 // Gallery image component
 function GalleryImage({ 
