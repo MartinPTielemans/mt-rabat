@@ -33,11 +33,11 @@ export default function Header() {
                   Hjem
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/galleri" className="hover:text-blue-600 transition-colors">
                   Galleri
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/om-os" className="hover:text-blue-600 transition-colors">
                   Om os
