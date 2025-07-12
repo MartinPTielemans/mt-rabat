@@ -4,104 +4,112 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a monorepo containing a Next.js frontend and Sanity CMS studio for MT Rabat, a Danish website built with Next.js 15, React 19, and Sanity CMS. The project uses pnpm workspaces for monorepo management.
+This is a static Next.js 15 website for MT Rabat, a Danish road service company. The project has been converted from a CMS-based system to use static content for better performance and simplified deployment.
 
 ## Architecture
 
-### Monorepo Structure
-- **Root**: Contains workspace configuration and shared scripts
-- **frontend/**: Next.js application with App Router
-- **studio/**: Sanity CMS studio for content management
-
 ### Tech Stack
 - **Frontend**: Next.js 15, React 19, TypeScript, Tailwind CSS v4
-- **CMS**: Sanity CMS with Visual Editing and Presentation Tool
-- **Package Manager**: pnpm with workspaces
-- **Styling**: Tailwind CSS with custom color palette and typography plugin
+- **Content**: Static TypeScript data files (no CMS)
+- **Deployment**: Vercel-ready static generation
 
 ### Key Features
-- Monorepo architecture with pnpm workspaces
-- Sanity CMS integration with live preview and visual editing
+- Fully static site generation
 - Custom Danish page routes (galleri, ydelser, kontakt, om-os, kompetencer)
-- TypeScript throughout with auto-generated Sanity types
+- TypeScript throughout with strongly typed static content
 - Tailwind CSS v4 with custom design system
+- Performance optimized with static content
 
 ## Development Commands
 
 ### Start Development
 ```bash
-# Start both frontend and studio in parallel
+# Start development server
 pnpm run dev
-
-# Start individual services
-pnpm --filter frontend dev    # Frontend only (port 3000)
-pnpm --filter studio dev      # Studio only (port 3333)
 ```
 
 ### Build & Deploy
 ```bash
-# Build frontend
-pnpm --filter frontend build
+# Build for production
+pnpm run build
 
-# Build studio
-pnpm --filter studio build
+# Start production server locally
+pnpm run start
+
+# Lint code
+pnpm run lint
 ```
-
-### Type Generation & Linting
-```bash
-# Generate Sanity types (run from frontend/)
-pnpm --filter frontend typegen
-
-# Lint frontend
-pnpm --filter frontend lint
-```
-
-### Data Management
-```bash
-# Import sample data to Sanity
-pnpm run import-sample-data
-```
-
-## Environment Variables
-
-Required environment variables:
-- `NEXT_PUBLIC_SANITY_PROJECT_ID`: Sanity project ID
-- `NEXT_PUBLIC_SANITY_DATASET`: Sanity dataset (usually "production")
-- `NEXT_PUBLIC_SANITY_API_VERSION`: API version (defaults to "2024-10-28")
-- `NEXT_PUBLIC_SANITY_STUDIO_URL`: Studio URL (defaults to "http://localhost:3333")
 
 ## Content Structure
 
-### Page Types
-- **homepage**: Main landing page
-- **galleryPage**: Gallery page (/galleri)
-- **servicesPage**: Services page (/ydelser)
-- **contactPage**: Contact page (/kontakt)
-- **aboutPage**: About page (/om-os)
-- **competenciesPage**: Competencies page (/kompetencer)
+All content is now stored in static TypeScript files located in `app/data/`:
 
-### Sanity Schema
-- **Documents**: page, person, post
-- **Singletons**: homepage, aboutPage, contactPage, etc.
-- **Objects**: blockContent, callToAction, infoSection, link
+- **staticContent.ts**: Main content for all pages including homepage, contact, services, about, competencies, and gallery
+- **services.ts**: Service showcase data with before/after images
+
+### Page Types
+- **Homepage**: Hero section, main content, capabilities, contact section
+- **Services**: List of services with descriptions, icons, and features
+- **Contact**: Contact information, service areas, contact form configuration  
+- **About**: Company description, values, contact info
+- **Competencies**: Core competencies, technical expertise, experience stats, materials
+- **Gallery**: Image galleries with categories and call-to-action
+
+## File Structure
+
+```
+mt-rabat/
+├── app/
+│   ├── data/                 # Static content files
+│   │   ├── staticContent.ts  # Main page content
+│   │   └── services.ts       # Service showcase data
+│   ├── components/           # React components
+│   ├── globals.css          # Global styles
+│   ├── layout.tsx           # Root layout
+│   ├── page.tsx             # Homepage
+│   ├── galleri/             # Gallery page
+│   ├── ydelser/             # Services page
+│   ├── kontakt/             # Contact page
+│   ├── om-os/               # About page
+│   ├── kompetencer/         # Competencies page
+│   └── sitemap.ts           # Static sitemap
+├── public/
+│   ├── images/              # Static images
+│   └── logo/                # Company logo
+├── package.json
+├── next.config.ts
+├── tailwind.config.ts
+└── tsconfig.json
+```
+
+## Content Management
+
+Since the site uses static content:
+
+1. **Adding Content**: Edit the relevant TypeScript files in `app/data/`
+2. **Images**: Add to `public/images/` and reference in content files
+3. **Type Safety**: All content is strongly typed with TypeScript interfaces
+4. **Validation**: TypeScript compiler ensures content structure is correct
 
 ## Development Workflow
 
-1. **Content Changes**: Use Sanity Studio at localhost:3333 for content editing
-2. **Type Safety**: Run `pnpm --filter frontend typegen` after schema changes
-3. **Visual Editing**: Use Sanity's Presentation Tool for live preview
-4. **Testing**: Always run `pnpm --filter frontend lint` before commits
-
-## File Structure Notes
-
-- `frontend/sanity/`: Sanity client configuration and queries
-- `studio/src/schemaTypes/`: Sanity schema definitions
-- `frontend/app/`: Next.js App Router pages and components
-- Page components follow Danish naming convention for routes
+1. **Content Changes**: Edit files in `app/data/`
+2. **Testing**: Run `pnpm run dev` to test changes locally
+3. **Building**: Run `pnpm run build` to verify static generation works
+4. **Linting**: Always run `pnpm run lint` before commits
 
 ## Deployment
 
 The project is configured for Vercel deployment with:
 - Production URL: https://mt-rabat.vercel.app
-- Webhook integration for automatic redeployment on content changes
-- Environment variables configured in Vercel dashboard
+- Automatic static generation
+- No external dependencies or CMS required
+- Fast loading with pre-generated static pages
+
+## Migration Notes
+
+This project was migrated from Sanity CMS to static content:
+- All CMS content has been extracted and converted to TypeScript
+- No database or external services required
+- Improved performance with static generation
+- Simplified deployment and maintenance
