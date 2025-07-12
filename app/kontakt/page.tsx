@@ -24,8 +24,48 @@ export const metadata: Metadata = {
   },
 };
 
+'use client';
+
+import { useState } from 'react';
+import { toast } from 'sonner';
+
 export default function KontaktPage() {
   const data = contactPageData;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const body = {
+      fornavn: formData.get('fornavn'),
+      efternavn: formData.get('efternavn'),
+      email: formData.get('email'),
+      telefon: formData.get('telefon'),
+      service: formData.get('service'),
+      besked: formData.get('besked'),
+    };
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error('Fejl ved afsendelse');
+      }
+
+      toast.success('Besked sendt succesfuldt!');
+      e.currentTarget.reset();
+    } catch (error) {
+      toast.error('Fejl ved afsendelse af besked. Prøv igen.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="py-20">
@@ -129,7 +169,7 @@ export default function KontaktPage() {
                   {data.contactForm.title}
                 </h2>
                 
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="fornavn" className="block text-sm font-medium text-gray-700 mb-2">
@@ -215,9 +255,10 @@ export default function KontaktPage() {
 
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50"
                   >
-                    {data.contactForm.submitButtonText}
+                    {isSubmitting ? 'Sender...' : data.contactForm.submitButtonText}
                   </button>
 
                   <p className="text-sm text-gray-500 text-center">
