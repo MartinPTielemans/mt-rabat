@@ -17,7 +17,7 @@ export default function Header() {
             />
             <div className="flex flex-col">
               <span className="text-lg sm:text-2xl font-bold text-gray-800">
-                MT Rabat
+                MT Rabatservice ApS
               </span>
               <span className="hidden sm:block text-sm text-gray-600">Marcel Tielemans</span>
             </div>
