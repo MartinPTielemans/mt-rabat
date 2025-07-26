@@ -237,7 +237,8 @@ export const homepageData: StaticHomepage = {
 // Static Contact Page Data
 export const contactPageData: StaticContactPage = {
   title: "Kontakt Os",
-  description: "Har du brug for professionel hjælp til dit projekt? Kontakt os i dag for et uforpligtende tilbud.",
+  description:
+    "Har du brug for professionel hjælp til dit projekt? Kontakt os i dag for et uforpligtende tilbud.",
   contactInfo: {
     phone: "+45 40 48 64 80",
     phoneHours: "Mandag - Fredag: 07:00 - 16:00",
@@ -245,7 +246,7 @@ export const contactPageData: StaticContactPage = {
     emailResponse: "Vi svarer inden for 24 timer",
     address: "Kollund byvej 45\n7400 Herning\nDanmark",
     emergencyPhone: "+45 40 48 64 80",
-    emergencyHours: "24/7 nødservice"
+    emergencyHours: "24/7 nødservice",
   },
   serviceAreas: {
     title: "Serviceområder",
@@ -254,21 +255,23 @@ export const contactPageData: StaticContactPage = {
       "København og omegn",
       "Nordsjælland",
       "Østsjælland",
-      "Og øvrige Sjælland efter aftale"
-    ]
+      "Og øvrige Sjælland efter aftale",
+    ],
   },
   contactForm: {
     title: "Send os en besked",
     serviceOptions: [
       { label: "Vælg service", value: "" },
-      { label: "Jordarbejde", value: "jordarbejde" },
-      { label: "Transport", value: "transport" },
-      { label: "Maskinudlejning", value: "maskinudlejning" },
-      { label: "Andet", value: "andet" }
+      { label: "Kantfyld/forstærkning", value: "Kantfyld/forstærkning" },
+      { label: "Rabatfræsning", value: "Rabatfræsning" },
+      { label: "Snegle/Afhøvling", value: "Snegle/Afhøvling" },
+      { label: "Generel Rabatvedligeholdelse", value: "Generel Rabatvedligeholdelse" },
+      { label: "Andet", value: "Andet" },
     ],
     submitButtonText: "Send besked",
-    privacyNotice: "* Påkrævede felter. Vi behandler dine data fortroligt og svarer hurtigst muligt."
-  }
+    privacyNotice:
+      "* Påkrævede felter. Vi behandler dine data fortroligt og svarer hurtigst muligt.",
+  },
 };
 
 // Static Services Page Data
