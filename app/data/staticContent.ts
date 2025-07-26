@@ -261,7 +261,7 @@ export const contactPageData: StaticContactPage = {
   contactForm: {
     title: "Send os en besked",
     serviceOptions: [
-      { label: "Vælg service", value: "" },
+      { label: "Vælg ønsket service", value: "" },
       { label: "Kantfyld/forstærkning", value: "Kantfyld/forstærkning" },
       { label: "Rabatfræsning", value: "Rabatfræsning" },
       { label: "Snegle/Afhøvling", value: "Snegle/Afhøvling" },
