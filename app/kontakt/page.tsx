@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { contactPageData } from '@/app/data/staticContent';
 import ContactForm from '@/app/components/ContactForm';
 import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/motion";
-import { SectionHeader } from "@/app/components/ui";
 
 export const metadata: Metadata = {
   title: "Kontakt - MT Rabat Vejservice",
@@ -27,9 +25,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function KontaktPage() {
-  const data = contactPageData;
 
+
+export default function KontaktPage() {
   return (
     <main className="relative">
       {/* Hero Section */}
@@ -39,11 +37,11 @@ export default function KontaktPage() {
           <div className="max-w-4xl mx-auto text-center">
             <FadeInUp>
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl uppercase tracking-wide mb-6">
-                {data.title}
+                Kontakt Os
               </h1>
               <div className="w-24 h-1 bg-primary mx-auto mb-8" />
               <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-                {data.description}
+                Har du brug for professionel hjælp til dit projekt? Kontakt os i dag for et uforpligtende tilbud.
               </p>
             </FadeInUp>
           </div>
@@ -84,9 +82,9 @@ export default function KontaktPage() {
                         <div>
                           <h3 className="font-display text-lg uppercase tracking-wide text-charcoal mb-1">Telefon</h3>
                           <a href="tel:+4540486480" className="text-primary font-mono text-lg hover:text-primary-dark transition-colors">
-                            {data.contactInfo.phone}
+                            +45 40 48 64 80
                           </a>
-                          <p className="text-sm text-gray-500 mt-1">{data.contactInfo.phoneHours}</p>
+                          <p className="text-sm text-gray-500 mt-1">Mandag - Fredag: 07:00 - 16:00</p>
                         </div>
                       </div>
                     </StaggerItem>
@@ -104,9 +102,9 @@ export default function KontaktPage() {
                         <div>
                           <h3 className="font-display text-lg uppercase tracking-wide text-charcoal mb-1">Email</h3>
                           <a href="mailto:info@mtrabat.dk" className="text-primary hover:text-primary-dark transition-colors">
-                            {data.contactInfo.email}
+                            info@mtrabat.dk
                           </a>
-                          <p className="text-sm text-gray-500 mt-1">{data.contactInfo.emailResponse}</p>
+                          <p className="text-sm text-gray-500 mt-1">Vi svarer inden for 24 timer</p>
                         </div>
                       </div>
                     </StaggerItem>
@@ -124,8 +122,10 @@ export default function KontaktPage() {
                         </div>
                         <div>
                           <h3 className="font-display text-lg uppercase tracking-wide text-charcoal mb-1">Adresse</h3>
-                          <div className="text-gray-600 whitespace-pre-line">
-                            {data.contactInfo.address}
+                          <div className="text-gray-600">
+                            Kollund byvej 45<br />
+                            7400 Herning<br />
+                            Danmark
                           </div>
                         </div>
                       </div>
@@ -144,9 +144,9 @@ export default function KontaktPage() {
                         <div>
                           <h3 className="font-display text-lg uppercase tracking-wide text-charcoal mb-1">Akut Service</h3>
                           <a href="tel:+4540486480" className="text-accent-dark font-mono text-lg hover:text-accent transition-colors">
-                            {data.contactInfo.emergencyPhone}
+                            +45 40 48 64 80
                           </a>
-                          <p className="text-sm text-gray-500 mt-1">{data.contactInfo.emergencyHours}</p>
+                          <p className="text-sm text-gray-500 mt-1">24/7 nødservice</p>
                         </div>
                       </div>
                     </StaggerItem>
@@ -157,20 +157,36 @@ export default function KontaktPage() {
                 <FadeInUp delay={0.3}>
                   <div className="bg-gray-50 p-8 border-l-4 border-l-primary mt-8">
                     <h3 className="font-display text-xl uppercase tracking-wide text-charcoal mb-4">
-                      {data.serviceAreas.title}
+                      Serviceområder
                     </h3>
                     <p className="text-gray-600 mb-4">
-                      {data.serviceAreas.description}
+                      Vi servicerer følgende områder:
                     </p>
                     <ul className="grid grid-cols-2 gap-2">
-                      {data.serviceAreas.areas.map((area, index) => (
-                        <li key={index} className="flex items-center text-gray-600">
-                          <svg className="w-4 h-4 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          {area}
-                        </li>
-                      ))}
+                      <li className="flex items-center text-gray-600">
+                        <svg className="w-4 h-4 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        København og omegn
+                      </li>
+                      <li className="flex items-center text-gray-600">
+                        <svg className="w-4 h-4 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Nordsjælland
+                      </li>
+                      <li className="flex items-center text-gray-600">
+                        <svg className="w-4 h-4 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Østsjælland
+                      </li>
+                      <li className="flex items-center text-gray-600">
+                        <svg className="w-4 h-4 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Og øvrige Sjælland efter aftale
+                      </li>
                     </ul>
                   </div>
                 </FadeInUp>
@@ -183,10 +199,10 @@ export default function KontaktPage() {
                   
                   <div className="relative z-10">
                     <h2 className="font-display text-2xl uppercase tracking-wide text-white mb-8">
-                      {data.contactForm.title}
+                      Send os en besked
                     </h2>
                     
-                    <ContactForm formData={data.contactForm} />
+                    <ContactForm />
                   </div>
                 </div>
               </FadeInUp>

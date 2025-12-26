@@ -2,9 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { IconComponent } from "@/app/components/IconComponent";
-import { galleryPageData } from "@/app/data/staticContent";
 import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/motion";
-import { SectionHeader } from "@/app/components/ui";
 
 export const metadata: Metadata = {
   title: "Galleri - Før og Efter Billeder af Vejservice Projekter",
@@ -37,18 +35,60 @@ export const metadata: Metadata = {
   },
 };
 
-// Gallery image component
-function GalleryImage({ 
-  image, 
-}: { 
-  image: typeof galleryPageData.images[0]; 
-}) {
+
+
+const images = [
+  {
+    url: "/images/afvanding/afvanding før.jpg",
+    alt: "Afvanding før behandling",
+    title: "Afvanding - Før",
+    description: "Vejrabat før afvandingsarbejde",
+    category: "afvanding",
+  },
+  {
+    url: "/images/afvanding/afvanding efter.jpg",
+    alt: "Afvanding efter behandling",
+    title: "Afvanding - Efter",
+    description: "Vejrabat efter professionel afvandingsbehandling",
+    category: "afvanding",
+  },
+  {
+    url: "/images/rabatfræsning/rabat fræsning før.jpg",
+    alt: "Rabatfræsning før behandling",
+    title: "Rabatfræsning - Før",
+    description: "Vejrabat før fræsning",
+    category: "rabatfræsning",
+  },
+  {
+    url: "/images/rabatfræsning/rabat fræsning efter.jpg",
+    alt: "Rabatfræsning efter behandling",
+    title: "Rabatfræsning - Efter",
+    description: "Vejrabat efter professionel fræsning",
+    category: "rabatfræsning",
+  },
+  {
+    url: "/images/kantforstærkning/kantforstærkning før.jpg",
+    alt: "Kantforstærkning før behandling",
+    title: "Kantforstærkning - Før",
+    description: "Vejkant før forstærkning",
+    category: "kantforstærkning",
+  },
+  {
+    url: "/images/kantforstærkning/kantforstærkning efter.jpg",
+    alt: "Kantforstærkning efter behandling",
+    title: "Kantforstærkning - Efter",
+    description: "Vejkant efter professionel forstærkning",
+    category: "kantforstærkning",
+  }
+];
+
+function GalleryImage({ image }: { image: typeof images[0] }) {
   return (
     <div className="group cursor-pointer">
       <div className="relative aspect-square bg-charcoal overflow-hidden border-l-4 border-l-primary shadow-industrial group-hover:shadow-industrial-hover transition-all duration-300">
         <Image
-          src={image.image.asset.url}
-          alt={image.image.alt}
+          src={image.url}
+          alt={image.alt}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -76,10 +116,7 @@ function GalleryImage({
   );
 }
 
-// Main gallery page component
 export default function GalleriPage() {
-  const data = galleryPageData;
-
   return (
     <main className="relative">
       {/* Hero Section */}
@@ -89,11 +126,11 @@ export default function GalleriPage() {
           <div className="max-w-4xl mx-auto text-center">
             <FadeInUp>
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl uppercase tracking-wide mb-6">
-                {data.title}
+                Galleri
               </h1>
               <div className="w-24 h-1 bg-primary mx-auto mb-8" />
               <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-                {data.description}
+                Se eksempler på vores arbejde og projekter
               </p>
             </FadeInUp>
           </div>
@@ -110,19 +147,27 @@ export default function GalleriPage() {
       <section className="py-8 bg-white border-b border-gray-200">
         <div className="container">
           <div className="flex flex-wrap justify-center gap-2">
-            {data.categories.map((category, index) => (
-              <button 
-                key={category.slug}
-                className={`px-6 py-3 font-display uppercase tracking-wider transition-all duration-300 ${
-                  index === 0 
-                    ? 'bg-primary text-white' 
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-charcoal'
-                }`}
-                style={index === 0 ? { clipPath: 'polygon(0 0, 100% 0, 95% 100%, 5% 100%)' } : {}}
-              >
-                {category.name}
-              </button>
-            ))}
+            <button 
+              className="px-6 py-3 font-display uppercase tracking-wider transition-all duration-300 bg-primary text-white"
+              style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 5% 100%)' }}
+            >
+              Alle
+            </button>
+            <button 
+              className="px-6 py-3 font-display uppercase tracking-wider transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-charcoal"
+            >
+              Afvanding
+            </button>
+            <button 
+              className="px-6 py-3 font-display uppercase tracking-wider transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-charcoal"
+            >
+              Rabatfræsning
+            </button>
+            <button 
+              className="px-6 py-3 font-display uppercase tracking-wider transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-charcoal"
+            >
+              Kantforstærkning
+            </button>
           </div>
         </div>
       </section>
@@ -133,7 +178,7 @@ export default function GalleriPage() {
         
         <div className="container relative z-10">
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {data.images.map((image, index) => (
+            {images.map((image, index) => (
               <StaggerItem key={index}>
                 <GalleryImage image={image} />
               </StaggerItem>
@@ -146,7 +191,7 @@ export default function GalleriPage() {
               className="inline-flex items-center bg-charcoal hover:bg-charcoal-light text-white px-10 py-4 font-display text-lg uppercase tracking-wider transition-all duration-300 group"
               style={{ clipPath: 'polygon(0 0, 100% 0, 97% 100%, 3% 100%)' }}
             >
-              {data.loadMoreText}
+              Indlæs flere billeder
               <svg 
                 className="w-5 h-5 ml-3 transform group-hover:translate-y-1 transition-transform" 
                 fill="none" 
@@ -168,11 +213,11 @@ export default function GalleriPage() {
           <div className="max-w-4xl mx-auto text-center">
             <FadeInUp>
               <h2 className="font-display text-4xl md:text-5xl uppercase tracking-wide mb-6">
-                {data.callToAction.title}
+                Interesseret i vores arbejde?
               </h2>
               <div className="w-24 h-1 bg-primary mx-auto mb-8" />
               <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                {data.callToAction.description}
+                Kontakt os for at høre mere om hvordan vi kan hjælpe dig
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -180,7 +225,7 @@ export default function GalleriPage() {
                   className="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white px-10 py-5 font-display text-xl uppercase tracking-wider transition-all duration-300 group"
                   style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 0% 100%)' }}
                 >
-                  <span>{data.callToAction.primaryButtonText}</span>
+                  <span>Kontakt os</span>
                   <svg 
                     className="w-5 h-5 ml-3 transform group-hover:translate-x-2 transition-transform" 
                     fill="none" 
@@ -191,13 +236,13 @@ export default function GalleriPage() {
                   </svg>
                 </Link>
                 <a
-                  href={`tel:${data.callToAction.phoneNumber}`}
+                  href="tel:+4540486480"
                   className="inline-flex items-center justify-center border-2 border-gray-600 hover:border-primary text-gray-300 hover:text-primary px-10 py-5 font-display text-xl uppercase tracking-wider transition-all duration-300"
                 >
                   <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  {data.callToAction.secondaryButtonText}
+                  Ring nu
                 </a>
               </div>
             </FadeInUp>

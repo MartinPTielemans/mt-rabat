@@ -3,9 +3,7 @@ import type { Metadata } from "next";
 import { IconComponent } from "@/app/components/IconComponent";
 import { ServiceShowcaseTabs } from "@/app/components/ServiceShowcaseTabs";
 import { HeroSection } from "@/app/components/HeroSection";
-import { homepageData } from "@/app/data/staticContent";
 import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/motion";
-import { SectionHeader, FeatureCard } from "@/app/components/ui";
 
 export const metadata: Metadata = {
   title: "Forside - Professionel Vejservice og Rabatfræsning",
@@ -37,44 +35,73 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const {
-    hero,
-    mainContent,
-    capabilities,
-    contactSection,
-  } = homepageData;
-
   return (
     <>
-      {/* Hero Section */}
-      <HeroSection
-        title={hero.title}
-        subtitle={hero.subtitle}
-        primaryButtonText={hero.primaryButtonText}
-        secondaryButtonText={hero.secondaryButtonText}
-        backgroundImage={hero.backgroundImage.asset.url}
-      />
+      <HeroSection />
 
       {/* Main Content Section */}
       <section id="mere-info" className="py-24 bg-white relative">
         <div className="container">
           <div className="max-w-6xl mx-auto">
-            <SectionHeader
-              title={mainContent.title}
-              subtitle={mainContent.description}
-              className="mb-16"
-            />
+            <div className="max-w-4xl text-center mx-auto mb-16">
+              <h2 className="font-display text-4xl md:text-5xl uppercase tracking-wide text-charcoal mb-6">
+                Klarer rabatterne og sikrer korrekt afvanding
+              </h2>
+              <div className="w-24 h-1 bg-primary mx-auto mb-6" />
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                Vores rabatbiler er udstyret med to fræsere. En hovedfræser som kan trække vulsten tilbage til vejkanten, hvor der typisk bliver en rende efter endt afhøvling. Den komprimerer rabatten og fejer vejen samtidigt.
+              </p>
+            </div>
             
             <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {mainContent.features.map((feature, index) => (
-                <StaggerItem key={index}>
-                  <FeatureCard
-                    icon={<IconComponent name={feature.icon} className="w-10 h-10" />}
-                    title={feature.title}
-                    description={feature.description}
-                  />
-                </StaggerItem>
-              ))}
+              <StaggerItem>
+                <div className="text-center">
+                  <div 
+                    className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                  >
+                    <IconComponent name="settings" className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="font-display text-xl uppercase tracking-wide text-charcoal mb-3">
+                    Avanceret udstyr
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Udover fræser kan der monteres en snegl, som kan snegle uønsket materiale ud til bagkanten af rabatten, og dermed lavet ønsket fald fra vejkant.
+                  </p>
+                </div>
+              </StaggerItem>
+              <StaggerItem>
+                <div className="text-center">
+                  <div 
+                    className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                  >
+                    <IconComponent name="box" className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="font-display text-xl uppercase tracking-wide text-charcoal mb-3">
+                    Udlæggerkasse med fræser
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Monteret med en udlæggerkasse med indbygget fræser, som kan oprive gruset og lægge det på plads, samtidig med at man kan tilføre ekstra materiale i samme arbejdsgang.
+                  </p>
+                </div>
+              </StaggerItem>
+              <StaggerItem>
+                <div className="text-center">
+                  <div 
+                    className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                  >
+                    <IconComponent name="eye" className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="font-display text-xl uppercase tracking-wide text-charcoal mb-3">
+                    Øget sikkerhed
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Inde ved styrepulten er der monteret fem kameraer, så maskinføreren altid kan orientere sig i alle vinkler omkring maskinen. Det er med til at sikre arbejdsmiljøet i og omkring maskinen.
+                  </p>
+                </div>
+              </StaggerItem>
             </StaggerContainer>
           </div>
         </div>
@@ -82,37 +109,41 @@ export default function Page() {
 
       {/* Capabilities Section */}
       <section className="py-24 bg-gray-50 relative overflow-hidden">
-        {/* Background pattern */}
         <div className="absolute inset-0 bg-diagonal-stripes pointer-events-none" />
         
         <div className="container relative z-10">
           <div className="max-w-6xl mx-auto">
-            <SectionHeader
-              title={capabilities.title}
-              subtitle={capabilities.description}
-              className="mb-16"
-            />
+            <div className="max-w-4xl text-center mx-auto mb-16">
+              <h2 className="font-display text-4xl md:text-5xl uppercase tracking-wide text-charcoal mb-6">
+                Rabatfræseren kan lægge ud i varierende bredde
+              </h2>
+              <div className="w-24 h-1 bg-primary mx-auto mb-6" />
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                Rabatfræseren har også mulighed for at lægge nyt materiale i rabatten i varierende bredde. Det gælder både stabilgrus, knust asfalt og knust beton.
+              </p>
+            </div>
             
             <div className="grid md:grid-cols-2 gap-16 items-start">
               <FadeInUp className="bg-white p-8 border-l-4 border-l-primary shadow-industrial">
                 <h3 className="font-display text-2xl uppercase tracking-wide text-charcoal mb-6">
-                  {capabilities.leftColumn.title}
+                  Alsidige anvendelsesmuligheder
                 </h3>
                 <div className="space-y-4">
-                  {capabilities.leftColumn.content.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="text-gray-600 leading-relaxed">
-                      {paragraph}
-                    </p>
-                  ))}
+                  <p className="text-gray-600 leading-relaxed">
+                    Sneglen kan desuden bruges i forbindelse med BSM fræsning, både til at afhøvle og snegle overskydende jord væk fra vejkanten, og den kan også snegle med så stor rotationshastighed, at materialet fordeles ud over rabatten.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    Herefter kan man køre med en græsklipper umiddelbart efter ved græsvækst.
+                  </p>
                 </div>
               </FadeInUp>
               
               <FadeInUp delay={0.2} className="bg-white p-8 border-l-4 border-l-primary shadow-industrial">
                 <h3 className="font-display text-2xl uppercase tracking-wide text-charcoal mb-6">
-                  {capabilities.rightColumn.title}
+                  Erfaring og kompetence
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  {capabilities.rightColumn.content}
+                  Vejservices primære forretningsområde er vejservice og udendørs drift og vedligeholdelse. Vejservice har mange års erfaring med alle typer af drift og vedligehold.
                 </p>
                 <Link
                   href="/kompetencer"
@@ -127,23 +158,21 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Service Showcase */}
       <ServiceShowcaseTabs />
 
       {/* Contact Section */}
       <section className="py-24 bg-charcoal text-white relative overflow-hidden">
-        {/* Grid pattern overlay */}
         <div className="absolute inset-0 bg-grid-overlay pointer-events-none" />
         
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeInUp>
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl uppercase tracking-wide mb-6">
-                {contactSection.title}
+                Ønsker du at vide mere?
               </h2>
               <div className="w-24 h-1 bg-primary mx-auto mb-8" />
               <p className="text-xl text-gray-400 mb-12 leading-relaxed max-w-2xl mx-auto">
-                {contactSection.description}
+                Kontakt vores lokale afdelinger for mere information om vores rabatfræsere og hvordan vi kan hjælpe med vedligeholdelse af vejrabatter.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -151,7 +180,7 @@ export default function Page() {
                   className="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white px-10 py-5 font-display text-xl uppercase tracking-wider transition-all duration-300 group"
                   style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 0% 100%)' }}
                 >
-                  <span>{contactSection.buttonText}</span>
+                  <span>Kontakt Marcel Tielemans</span>
                   <svg 
                     className="w-5 h-5 ml-3 transform group-hover:translate-x-2 transition-transform" 
                     fill="none" 

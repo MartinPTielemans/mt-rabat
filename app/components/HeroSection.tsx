@@ -4,21 +4,9 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-interface HeroSectionProps {
-  title: string;
-  subtitle: string;
-  primaryButtonText: string;
-  secondaryButtonText: string;
-  backgroundImage: string;
-}
+const titleWords = ['Rabatbiler', 'sikrer', 'vejenes', 'holdbarhed'];
 
-export function HeroSection({
-  title,
-  subtitle,
-  primaryButtonText,
-  secondaryButtonText,
-  backgroundImage,
-}: HeroSectionProps) {
+export function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -29,9 +17,6 @@ export function HeroSection({
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  // Split title into words for animation
-  const words = title.split(' ');
-
   return (
     <div ref={ref} className="relative w-screen ml-[calc(-50vw+50%)] overflow-hidden">
       {/* Background with parallax */}
@@ -41,7 +26,7 @@ export function HeroSection({
       >
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url("${backgroundImage}")` }}
+          style={{ backgroundImage: 'url("/images/Kantfyld ramper E 45.jpg")' }}
         />
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal/80" />
@@ -75,7 +60,7 @@ export function HeroSection({
                 }
               }}
             >
-              {words.map((word, i) => (
+              {titleWords.map((word, i) => (
                 <motion.span
                   key={i}
                   className="inline-block mr-[0.25em] overflow-hidden"
@@ -91,12 +76,7 @@ export function HeroSection({
                     }
                   }}
                 >
-                  {/* Highlight specific words */}
-                  {word.toLowerCase() === 'kraft' || word.toLowerCase() === 'præcision' ? (
-                    <span className="text-primary">{word}</span>
-                  ) : (
-                    word
-                  )}
+                  {word}
                 </motion.span>
               ))}
             </motion.h1>
@@ -116,7 +96,7 @@ export function HeroSection({
               transition={{ duration: 0.6, delay: 1 }}
               className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl leading-relaxed"
             >
-              {subtitle}
+              Marcel Tielemans&apos; rabatbiler vedligeholder rabatterne og sikrer, at afvandingen fra vejen kan løbe væk, så vandet ikke bliver liggende på vejen. Alt sker i én arbejdsgang.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -132,7 +112,7 @@ export function HeroSection({
                 style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 0% 100%)' }}
               >
                 <span className="relative z-10 flex items-center">
-                  {primaryButtonText}
+                  Kontakt Marcel Tielemans
                   <svg 
                     className="w-5 h-5 ml-3 transform group-hover:translate-x-2 transition-transform" 
                     fill="none" 
@@ -150,7 +130,7 @@ export function HeroSection({
                 className="group relative inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white px-10 py-5 font-display text-xl uppercase tracking-wider transition-all duration-300 backdrop-blur-sm overflow-hidden"
                 style={{ clipPath: 'polygon(5% 0, 100% 0, 100% 100%, 0% 100%)' }}
               >
-                <span className="relative z-10">{secondaryButtonText}</span>
+                <span className="relative z-10">Læs mere</span>
                 <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
               </Link>
             </motion.div>
@@ -184,4 +164,3 @@ export function HeroSection({
     </div>
   );
 }
-

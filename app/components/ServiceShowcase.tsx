@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import type { ServiceShowcaseData } from '@/app/data/services';
+import type { ServiceShowcaseData } from './ServiceShowcaseTabs';
 import { BeforeAfterSlider } from './BeforeAfterSlider';
 
 export function ServiceShowcase({ showcase }: { showcase: ServiceShowcaseData }) {

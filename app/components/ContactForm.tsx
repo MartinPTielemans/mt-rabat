@@ -4,16 +4,7 @@ import { useState, useRef } from 'react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
-type ContactFormProps = {
-  formData: {
-    title: string;
-    serviceOptions: { label: string; value: string }[];
-    submitButtonText: string;
-    privacyNotice: string;
-  };
-};
-
-export default function ContactForm({ formData }: ContactFormProps) {
+export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -147,11 +138,12 @@ export default function ContactForm({ formData }: ContactFormProps) {
           onBlur={() => setFocusedField(null)}
           className={`${inputClasses} cursor-pointer`}
         >
-          {formData.serviceOptions.map((option, index) => (
-            <option key={index} value={option.value} className="bg-charcoal-dark">
-              {option.label}
-            </option>
-          ))}
+          <option value="" className="bg-charcoal-dark">Vælg ønsket service</option>
+          <option value="Kantfyld/forstærkning" className="bg-charcoal-dark">Kantfyld/forstærkning</option>
+          <option value="Rabatfræsning" className="bg-charcoal-dark">Rabatfræsning</option>
+          <option value="Snegle/Afhøvling" className="bg-charcoal-dark">Snegle/Afhøvling</option>
+          <option value="Generel Rabatvedligeholdelse" className="bg-charcoal-dark">Generel Rabatvedligeholdelse</option>
+          <option value="Andet" className="bg-charcoal-dark">Andet</option>
         </select>
       </div>
 
@@ -190,7 +182,7 @@ export default function ContactForm({ formData }: ContactFormProps) {
             </>
           ) : (
             <>
-              {formData.submitButtonText}
+              Send besked
               <svg 
                 className="w-5 h-5 ml-3 transform group-hover:translate-x-2 transition-transform" 
                 fill="none" 
@@ -206,7 +198,7 @@ export default function ContactForm({ formData }: ContactFormProps) {
       </motion.button>
 
       <p className="text-sm text-gray-500 text-center">
-        {formData.privacyNotice}
+        * Påkrævede felter. Vi behandler dine data fortroligt og svarer hurtigst muligt.
       </p>
     </form>
   );

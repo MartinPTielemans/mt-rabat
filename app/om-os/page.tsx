@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { IconComponent } from "@/app/components/IconComponent";
-import { aboutPageData } from "@/app/data/staticContent";
 import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/motion";
-import { SectionHeader, FeatureCard } from "@/app/components/ui";
 
 export const metadata: Metadata = {
   title: "Om Os - MT Rabat Vejservice Historie og Værdier",
@@ -27,9 +25,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function OmOsPage() {
-  const data = aboutPageData;
 
+
+export default function OmOsPage() {
   return (
     <main className="relative">
       {/* Hero Section */}
@@ -39,11 +37,11 @@ export default function OmOsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <FadeInUp>
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl uppercase tracking-wide mb-6">
-                {data.title}
+                Om Os
               </h1>
               <div className="w-24 h-1 bg-primary mx-auto mb-8" />
               <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-                {data.description}
+                Marcel Tielemans Rabat er en specialiseret virksomhed med mange års erfaring inden for vejservice og infrastruktur.
               </p>
             </FadeInUp>
           </div>
@@ -62,7 +60,7 @@ export default function OmOsPage() {
           <div className="max-w-4xl mx-auto">
             <FadeInUp className="bg-gray-50 p-10 border-l-4 border-l-primary shadow-industrial">
               <p className="text-lg text-gray-600 leading-relaxed">
-                {data.companyDescription}
+                Vi er dedikeret til at levere højkvalitets vejservice og infrastrukturløsninger med fokus på bæredygtighed og effektivitet.
               </p>
             </FadeInUp>
           </div>
@@ -75,21 +73,66 @@ export default function OmOsPage() {
         
         <div className="container relative z-10">
           <div className="max-w-6xl mx-auto">
-            <SectionHeader
-              title="Vores Værdier"
-              className="mb-16"
-            />
+            <div className="max-w-4xl text-center mx-auto mb-16">
+              <FadeInUp>
+                <h2 className="font-display text-4xl md:text-5xl uppercase tracking-wide text-charcoal mb-6">
+                  Vores Værdier
+                </h2>
+                <div className="w-24 h-1 bg-primary mx-auto mb-6" />
+              </FadeInUp>
+            </div>
             
             <StaggerContainer className="grid md:grid-cols-3 gap-12">
-              {data.values.map((value, index) => (
-                <StaggerItem key={index}>
-                  <FeatureCard
-                    icon={<IconComponent name={value.icon} className="w-10 h-10" />}
-                    title={value.title}
-                    description={value.description}
-                  />
-                </StaggerItem>
-              ))}
+              <StaggerItem>
+                <div className="text-center">
+                  <div 
+                    className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                  >
+                    <span className="text-white"><IconComponent name="star" className="w-10 h-10" /></span>
+                  </div>
+                  <h3 className="font-display text-xl uppercase tracking-wide text-charcoal mb-3">
+                    Kvalitet
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Vi leverer altid arbejde af højeste kvalitet med fokus på holdbarhed og præcision.
+                  </p>
+                </div>
+              </StaggerItem>
+              
+              <StaggerItem>
+                <div className="text-center">
+                  <div 
+                    className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                  >
+                    <span className="text-white"><IconComponent name="shield" className="w-10 h-10" /></span>
+                  </div>
+                  <h3 className="font-display text-xl uppercase tracking-wide text-charcoal mb-3">
+                    Erfaring
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Mange års erfaring sikrer, at vi kan håndtere selv de mest komplekse projekter.
+                  </p>
+                </div>
+              </StaggerItem>
+              
+              <StaggerItem>
+                <div className="text-center">
+                  <div 
+                    className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                  >
+                    <span className="text-white"><IconComponent name="tools" className="w-10 h-10" /></span>
+                  </div>
+                  <h3 className="font-display text-xl uppercase tracking-wide text-charcoal mb-3">
+                    Tillid
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Vi bygger langvarige relationer baseret på tillid og pålidelighed.
+                  </p>
+                </div>
+              </StaggerItem>
             </StaggerContainer>
           </div>
         </div>
@@ -101,11 +144,14 @@ export default function OmOsPage() {
         
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
-            <SectionHeader
-              title="Kontakt Information"
-              theme="dark"
-              className="mb-12"
-            />
+            <div className="max-w-4xl text-center mx-auto mb-12">
+              <FadeInUp>
+                <h2 className="font-display text-4xl md:text-5xl uppercase tracking-wide text-white mb-6">
+                  Kontakt Information
+                </h2>
+                <div className="w-24 h-1 bg-primary mx-auto mb-6" />
+              </FadeInUp>
+            </div>
             
             <FadeInUp>
               <div className="grid md:grid-cols-3 gap-8">
@@ -122,7 +168,7 @@ export default function OmOsPage() {
                     <h3 className="font-display text-lg uppercase tracking-wide">Telefon</h3>
                   </div>
                   <a href="tel:+4540486480" className="text-primary font-mono text-lg hover:text-primary-light transition-colors">
-                    {data.contactInfo.phone}
+                    +45 40 48 64 80
                   </a>
                 </div>
                 
@@ -139,7 +185,7 @@ export default function OmOsPage() {
                     <h3 className="font-display text-lg uppercase tracking-wide">Email</h3>
                   </div>
                   <a href="mailto:info@mtrabat.dk" className="text-primary hover:text-primary-light transition-colors">
-                    {data.contactInfo.email}
+                    info@mtrabat.dk
                   </a>
                 </div>
                 
@@ -156,8 +202,10 @@ export default function OmOsPage() {
                     </div>
                     <h3 className="font-display text-lg uppercase tracking-wide">Adresse</h3>
                   </div>
-                  <div className="text-gray-400 whitespace-pre-line">
-                    {data.contactInfo.address}
+                  <div className="text-gray-400">
+                    Kollund byvej 45<br />
+                    7400 Herning<br />
+                    Danmark
                   </div>
                 </div>
               </div>
