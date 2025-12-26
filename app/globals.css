@@ -8,14 +8,30 @@
 }
 
 @theme {
+  /* Shadows */
   --shadow-layer: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+  --shadow-industrial: 0 4px 30px rgba(0, 0, 0, 0.15);
+  --shadow-industrial-hover: 0 8px 40px rgba(0, 0, 0, 0.25);
 
+  /* Industrial Color Palette */
+  --color-primary: #E57322;
+  --color-primary-light: #ea8f4e;
+  --color-primary-dark: #ba5f1e;
+  --color-accent: #CDEA19;
+  --color-accent-dark: #a3bb14;
+  --color-charcoal: #1b1d27;
+  --color-charcoal-light: #252837;
+  --color-charcoal-dark: #13141b;
+
+  /* Base colors */
   --color-framework: #000;
   --color-black: #0b0b0b;
   --color-white: #fff;
-  --color-brand: #f50;
+  --color-brand: #E57322;
   --color-blue: #0052ff;
-  --color-yellow: #cdea19;
+  --color-yellow: #CDEA19;
+  
+  /* Gray scale */
   --color-gray-50: #f6f6f8;
   --color-gray-100: #eeeef1;
   --color-gray-200: #e3e4e8;
@@ -28,8 +44,155 @@
   --color-gray-900: #1b1d27;
   --color-gray-950: #13141b;
 
-  --font-display: "Inter", "sans-serif";
-  --font-sans: "Inter", "sans-serif";
+  /* Typography */
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
+  /* Transitions */
   --default-transition-duration: 250ms;
+}
+
+/* Industrial styling utilities */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+}
+
+@layer components {
+  /* Industrial card style */
+  .card-industrial {
+    @apply bg-white border-l-4 border-l-primary shadow-industrial transition-all duration-300;
+  }
+  
+  .card-industrial:hover {
+    @apply shadow-industrial-hover -translate-y-1;
+  }
+
+  /* Industrial button */
+  .btn-industrial {
+    @apply relative overflow-hidden bg-primary text-white px-8 py-4 font-display text-xl uppercase tracking-wider transition-all duration-300;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+  }
+  
+  .btn-industrial:hover {
+    @apply bg-primary-dark;
+  }
+
+  .btn-industrial::before {
+    content: "";
+    @apply absolute inset-0 bg-accent opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-industrial:hover::before {
+    @apply opacity-10;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply relative overflow-hidden border-2 border-white text-white px-8 py-4 font-display text-xl uppercase tracking-wider transition-all duration-300 backdrop-blur-sm;
+    clip-path: polygon(5% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .btn-secondary:hover {
+    @apply bg-white text-charcoal;
+  }
+
+  /* Industrial section divider */
+  .section-divider {
+    @apply h-1 w-24 bg-primary mx-auto;
+  }
+
+  /* Grid pattern overlay */
+  .bg-grid-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Diagonal stripe pattern */
+  .bg-diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgba(229, 115, 34, 0.03) 10px,
+      rgba(229, 115, 34, 0.03) 20px
+    );
+  }
+
+  /* Text gradient */
+  .text-gradient-industrial {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Hexagonal icon container */
+  .icon-hex {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    @apply bg-primary flex items-center justify-center;
+  }
+
+  /* Angular container */
+  .angular-container {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+  }
+}
+
+@layer utilities {
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+}
+
+/* Shimmer animation for loading skeletons */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Focus visible styling for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Smooth scroll */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }

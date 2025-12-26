@@ -2,7 +2,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { IconComponent } from "@/app/components/IconComponent";
 import { ServiceShowcaseTabs } from "@/app/components/ServiceShowcaseTabs";
+import { HeroSection } from "@/app/components/HeroSection";
 import { homepageData } from "@/app/data/staticContent";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/motion";
+import { SectionHeader, FeatureCard } from "@/app/components/ui";
 
 export const metadata: Metadata = {
   title: "Forside - Professionel Vejservice og Rabatfræsning",
@@ -34,7 +37,6 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  // Use static data instead of CMS
   const {
     hero,
     mainContent,
@@ -45,140 +47,134 @@ export default function Page() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative w-screen ml-[calc(-50vw+50%)]">
-        <div
-          className="relative w-full bg-cover bg-center"
-          style={{
-            backgroundImage: `url("${hero.backgroundImage.asset.url}")`,
-            aspectRatio: '162/35',
-            minHeight: '70vh',
-          }}
-        >
-          <div className="absolute inset-0 bg-black/45" />
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center py-20">
-            <div className="max-w-5xl text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 tracking-tight leading-tight">
-                {hero.title}
-              </h1>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 font-light leading-relaxed">
-                {hero.subtitle}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/kontakt"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-colors shadow-lg"
-                >
-                  {hero.primaryButtonText}
-                </Link>
-                <Link
-                  href="#mere-info"
-                  className="border-2 border-white hover:bg-white hover:text-gray-800 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-colors backdrop-blur-sm"
-                >
-                  {hero.secondaryButtonText}
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HeroSection
+        title={hero.title}
+        subtitle={hero.subtitle}
+        primaryButtonText={hero.primaryButtonText}
+        secondaryButtonText={hero.secondaryButtonText}
+        backgroundImage={hero.backgroundImage.asset.url}
+      />
 
       {/* Main Content Section */}
-      <div id="mere-info" className="py-20 bg-white">
+      <section id="mere-info" className="py-24 bg-white relative">
         <div className="container">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-16 text-center">
-              {mainContent.title}
-            </h2>
-            <p className="text-xl text-gray-600 mb-16 text-center max-w-4xl mx-auto leading-relaxed">
-              {mainContent.description}
-            </p>
+            <SectionHeader
+              title={mainContent.title}
+              subtitle={mainContent.description}
+              className="mb-16"
+            />
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {mainContent.features.map((feature, index) => (
-                <div key={index} className="bg-gray-50 p-8 rounded-lg">
-                  <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <IconComponent name={feature.icon} />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-center">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
+                <StaggerItem key={index}>
+                  <FeatureCard
+                    icon={<IconComponent name={feature.icon} className="w-10 h-10" />}
+                    title={feature.title}
+                    description={feature.description}
+                  />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Capabilities Section */}
-      <div className="py-20 bg-gray-50">
-        <div className="container">
+      <section className="py-24 bg-gray-50 relative overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-diagonal-stripes pointer-events-none" />
+        
+        <div className="container relative z-10">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-16 text-center">
-              {capabilities.title}
-            </h2>
-            <p className="text-xl text-gray-600 mb-16 text-center max-w-4xl mx-auto leading-relaxed">
-              {capabilities.description}
-            </p>
+            <SectionHeader
+              title={capabilities.title}
+              subtitle={capabilities.description}
+              className="mb-16"
+            />
             
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h3 className="text-3xl font-bold mb-8">
+            <div className="grid md:grid-cols-2 gap-16 items-start">
+              <FadeInUp className="bg-white p-8 border-l-4 border-l-primary shadow-industrial">
+                <h3 className="font-display text-2xl uppercase tracking-wide text-charcoal mb-6">
                   {capabilities.leftColumn.title}
                 </h3>
-                <div className="prose prose-lg text-gray-600">
+                <div className="space-y-4">
                   {capabilities.leftColumn.content.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    <p key={index} className="text-gray-600 leading-relaxed">
                       {paragraph}
                     </p>
                   ))}
                 </div>
-              </div>
+              </FadeInUp>
               
-              <div>
-                <h3 className="text-3xl font-bold mb-8">
+              <FadeInUp delay={0.2} className="bg-white p-8 border-l-4 border-l-primary shadow-industrial">
+                <h3 className="font-display text-2xl uppercase tracking-wide text-charcoal mb-6">
                   {capabilities.rightColumn.title}
                 </h3>
-                <div>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {capabilities.rightColumn.content}
-                  </p>
-                  <Link
-                    href="/kompetencer"
-                    className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-lg"
-                  >
-                    Læs mere om vores kompetencer
-                    <IconComponent name="arrow-right" className="w-5 h-5 ml-2 text-blue-600" />
-                  </Link>
-                </div>
-              </div>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  {capabilities.rightColumn.content}
+                </p>
+                <Link
+                  href="/kompetencer"
+                  className="inline-flex items-center text-primary hover:text-primary-dark font-medium transition-colors group"
+                >
+                  <span>Læs mere om vores kompetencer</span>
+                  <IconComponent name="arrow-right" className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </FadeInUp>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
+      {/* Service Showcase */}
       <ServiceShowcaseTabs />
 
       {/* Contact Section */}
-      <div className="py-20 bg-blue-600 text-white">
-        <div className="container">
+      <section className="py-24 bg-charcoal text-white relative overflow-hidden">
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-grid-overlay pointer-events-none" />
+        
+        <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              {contactSection.title}
-            </h2>
-            <p className="text-xl mb-12 leading-relaxed">
-              {contactSection.description}
-            </p>
-            <Link
-              href="/kontakt"
-              className="bg-white text-blue-600 hover:bg-gray-100 px-10 py-4 rounded-lg font-semibold text-lg transition-colors inline-block"
-            >
-              {contactSection.buttonText}
-            </Link>
+            <FadeInUp>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl uppercase tracking-wide mb-6">
+                {contactSection.title}
+              </h2>
+              <div className="w-24 h-1 bg-primary mx-auto mb-8" />
+              <p className="text-xl text-gray-400 mb-12 leading-relaxed max-w-2xl mx-auto">
+                {contactSection.description}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/kontakt"
+                  className="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white px-10 py-5 font-display text-xl uppercase tracking-wider transition-all duration-300 group"
+                  style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 0% 100%)' }}
+                >
+                  <span>{contactSection.buttonText}</span>
+                  <svg 
+                    className="w-5 h-5 ml-3 transform group-hover:translate-x-2 transition-transform" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+                <a
+                  href="tel:+4540486480"
+                  className="inline-flex items-center justify-center border-2 border-gray-600 hover:border-primary text-gray-300 hover:text-primary px-10 py-5 font-display text-xl uppercase tracking-wider transition-all duration-300"
+                >
+                  <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span className="font-mono">+45 40 48 64 80</span>
+                </a>
+              </div>
+            </FadeInUp>
           </div>
         </div>
-      </div>
-
+      </section>
     </>
   );
 }

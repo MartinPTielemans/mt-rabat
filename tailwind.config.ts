@@ -11,10 +11,45 @@ export default {
     extend: {
       boxShadow: {
         layer: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+        industrial: "0 4px 30px rgba(0, 0, 0, 0.15)",
+        "industrial-hover": "0 8px 40px rgba(0, 0, 0, 0.25)",
       },
       colors: {
-        black: "#0d0e12",
+        // Industrial palette
+        primary: {
+          DEFAULT: "#E57322",
+          50: "#fcf1e8",
+          100: "#f9e3d2",
+          200: "#f4c7a6",
+          300: "#efab7a",
+          400: "#ea8f4e",
+          500: "#E57322",
+          600: "#ba5f1e",
+          700: "#8f4b1b",
+          800: "#653818",
+          900: "#3a2415",
+        },
+        accent: {
+          DEFAULT: "#CDEA19",
+          dark: "#a3bb14",
+        },
+        charcoal: {
+          DEFAULT: "#1b1d27",
+          50: "#f6f6f8",
+          100: "#eeeef1",
+          200: "#e3e4e8",
+          300: "#bbbdc9",
+          400: "#9499ad",
+          500: "#727892",
+          600: "#515870",
+          700: "#383d51",
+          800: "#252837",
+          900: "#1b1d27",
+          950: "#13141b",
+        },
+        black: "#0b0b0b",
         white: "#fff",
+        // Keep existing color scales for compatibility
         cyan: {
           50: "#e7fefe",
           100: "#c5fcfc",
@@ -95,7 +130,49 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        display: ["var(--font-display)", "sans-serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
+      backgroundImage: {
+        "grid-pattern": `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        "diagonal-lines": `repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 10px,
+          rgba(229, 115, 34, 0.03) 10px,
+          rgba(229, 115, 34, 0.03) 20px
+        )`,
+      },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-out forwards",
+        "fade-in-up": "fadeInUp 0.6s ease-out forwards",
+        "slide-in-left": "slideInLeft 0.5s ease-out forwards",
+        "slide-in-right": "slideInRight 0.5s ease-out forwards",
+        "scale-in": "scaleIn 0.3s ease-out forwards",
+        "counter": "counter 2s ease-out forwards",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        fadeInUp: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideInLeft: {
+          "0%": { opacity: "0", transform: "translateX(-30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        slideInRight: {
+          "0%": { opacity: "0", transform: "translateX(30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        scaleIn: {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
     },
   },

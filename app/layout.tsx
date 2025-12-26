@@ -2,11 +2,32 @@ import "./globals.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bebas_Neue, DM_Sans, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 
 import { Footer } from "@/app/components/Footer";
 import Header from "@/app/components/Header";
+import { ScrollToTop } from "@/app/components/ui";
+
+// Industrial typography stack
+const bebasNeue = Bebas_Neue({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mtrabat.dk'),
@@ -73,11 +94,6 @@ export const metadata: Metadata = {
   },
 };
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export default function RootLayout({
   children,
@@ -163,19 +179,29 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="da" className={`${inter.variable} bg-white text-black`}>
+    <html lang="da" className={`${bebasNeue.variable} ${dmSans.variable} ${jetbrainsMono.variable} bg-white text-black`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body>
+      <body className="font-sans">
         <div className="min-h-screen">
-          <Toaster />
+          <Toaster 
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: '#1b1d27',
+                color: '#fff',
+                border: '1px solid #383d51',
+              },
+            }}
+          />
           <Header />
-          <main className="w-full pt-24">{children}</main>
+          <main className="w-full pt-20">{children}</main>
           <Footer />
+          <ScrollToTop />
         </div>
         <SpeedInsights />
       </body>

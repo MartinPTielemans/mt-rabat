@@ -25,19 +25,19 @@ This is a static Next.js 15 website for MT Rabat, a Danish road service company.
 ### Start Development
 ```bash
 # Start development server
-pnpm run dev
+bun run dev
 ```
 
 ### Build & Deploy
 ```bash
 # Build for production
-pnpm run build
+bun run build
 
 # Start production server locally
-pnpm run start
+bun run start
 
 # Lint code
-pnpm run lint
+bun run lint
 ```
 
 ## Content Structure
@@ -94,9 +94,9 @@ Since the site uses static content:
 ## Development Workflow
 
 1. **Content Changes**: Edit files in `app/data/`
-2. **Testing**: Run `pnpm run dev` to test changes locally
-3. **Building**: Run `pnpm run build` to verify static generation works
-4. **Linting**: Always run `pnpm run lint` before commits
+2. **Testing**: Run `bun run dev` to test changes locally
+3. **Building**: Run `bun run build` to verify static generation works
+4. **Linting**: Always run `bun run lint` before commits
 
 ## Deployment
 
