@@ -75,11 +75,11 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Kompetencer */}
+            {/* Ydelser */}
             <div>
               <h4 className="font-display text-lg text-white uppercase tracking-wider mb-6 flex items-center">
                 <span className="w-8 h-0.5 bg-primary mr-3" />
-                Kompetencer
+                Ydelser
               </h4>
               <ul className="space-y-3 text-sm">
                 <li>
@@ -175,11 +175,11 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/kompetencer" className="text-gray-400 hover:text-white transition-colors flex items-center group">
+                  <Link href="/galleri" className="text-gray-400 hover:text-white transition-colors flex items-center group">
                     <svg className="w-4 h-4 mr-2 text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    Kompetencer
+                    Galleri
                   </Link>
                 </li>
                 <li>

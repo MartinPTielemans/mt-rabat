@@ -15,7 +15,7 @@ This is a static Next.js 15 website for MT Rabat, a Danish road service company.
 
 ### Key Features
 - Fully static site generation
-- Custom Danish page routes (galleri, ydelser, kontakt, om-os, kompetencer)
+- Custom Danish page routes (galleri, ydelser, kontakt, om-os)
 - TypeScript throughout with strongly typed static content
 - Tailwind CSS v4 with custom design system
 - Performance optimized with static content
@@ -49,10 +49,9 @@ All content is now stored in static TypeScript files located in `app/data/`:
 
 ### Page Types
 - **Homepage**: Hero section, main content, capabilities, contact section
-- **Services**: List of services with descriptions, icons, and features
-- **Contact**: Contact information, service areas, contact form configuration  
+- **Services (Ydelser)**: List of services with descriptions, experience stats, equipment, materials, and capacity
+- **Contact**: Contact information, service areas, contact form configuration
 - **About**: Company description, values, contact info
-- **Competencies**: Core competencies, technical expertise, experience stats, materials
 - **Gallery**: Image galleries with categories and call-to-action
 
 ## File Structure
@@ -68,10 +67,9 @@ mt-rabat/
 │   ├── layout.tsx           # Root layout
 │   ├── page.tsx             # Homepage
 │   ├── galleri/             # Gallery page
-│   ├── ydelser/             # Services page
+│   ├── ydelser/             # Services page (includes competencies content)
 │   ├── kontakt/             # Contact page
 │   ├── om-os/               # About page
-│   ├── kompetencer/         # Competencies page
 │   └── sitemap.ts           # Static sitemap
 ├── public/
 │   ├── images/              # Static images
