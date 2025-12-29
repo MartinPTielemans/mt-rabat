@@ -146,10 +146,10 @@ export default function Page() {
                   Vejservices primære forretningsområde er vejservice og udendørs drift og vedligeholdelse. Vejservice har mange års erfaring med alle typer af drift og vedligehold.
                 </p>
                 <Link
-                  href="/kompetencer"
+                  href="/ydelser"
                   className="inline-flex items-center text-primary hover:text-primary-dark font-medium transition-colors group"
                 >
-                  <span>Læs mere om vores kompetencer</span>
+                  <span>Se alle vores ydelser</span>
                   <IconComponent name="arrow-right" className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
                 </Link>
               </FadeInUp>

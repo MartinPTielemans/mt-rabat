@@ -9,7 +9,7 @@ const navLinks = [
   { href: '/', label: 'Hjem' },
   { href: '/om-os', label: 'Om os' },
   { href: '/ydelser', label: 'Ydelser' },
-  { href: '/kompetencer', label: 'Kompetencer' },
+  { href: '/galleri', label: 'Galleri' },
 ];
 
 export default function Header() {

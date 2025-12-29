@@ -37,7 +37,7 @@ export function Card({
     >
       {/* Number overlay for numbered variant */}
       {variant === 'numbered' && number !== undefined && (
-        <div className="absolute -top-4 -right-4 font-display text-8xl text-gray-100 select-none pointer-events-none">
+        <div className="absolute top-2 right-4 font-display text-7xl text-gray-100 select-none pointer-events-none leading-none">
           {String(number).padStart(2, '0')}
         </div>
       )}

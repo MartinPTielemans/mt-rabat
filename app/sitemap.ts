@@ -24,12 +24,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/kompetencer`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/galleri`,
       lastModified,
       changeFrequency: 'weekly',
