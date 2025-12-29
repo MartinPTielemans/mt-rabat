@@ -196,3 +196,14 @@
     scroll-behavior: smooth;
   }
 }
+
+/* Under construction page - hide navigation */
+body.under-construction header,
+body.under-construction footer,
+body.under-construction .scroll-to-top {
+  display: none !important;
+}
+
+body.under-construction main {
+  padding-top: 0 !important;
+}
