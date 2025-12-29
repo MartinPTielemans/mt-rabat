@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Set this to false to disable the under construction redirect
-const UNDER_CONSTRUCTION = true;
+// Set UNDER_CONSTRUCTION=true in environment to enable redirect
+const UNDER_CONSTRUCTION = process.env.UNDER_CONSTRUCTION === 'true';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   if (!UNDER_CONSTRUCTION) {
     return NextResponse.next();
   }
